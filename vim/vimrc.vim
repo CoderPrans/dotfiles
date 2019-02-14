@@ -65,6 +65,7 @@ endfunction
 set statusline=
 set statusline+=%{StatuslineGit()}
 set statusline+=\ %f
+set statusline+=\ %m
 set statusline+=%=
 set statusline+=\ %l,%c
 set statusline+=\ %*
