@@ -28,7 +28,6 @@ set noswapfile
 set nowrap
 
 " preferences
-inoremap jk <ESC>
 let mapleader = "\<Space>"
 set pastetoggle=<F2>
 " j/k will move virtual lines (lines that wrap)
