@@ -1,5 +1,4 @@
 call plug#begin('~/.config/nvim/bundle')
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
@@ -10,7 +9,7 @@ Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'flazz/vim-colorschemes'
-Plug 'w0rp/ale'
+Plug 'vim-syntastic/syntastic'
 " call PlugInstall to install new plugins
 call plug#end()
 
@@ -101,10 +100,13 @@ let NERDTreeDirArrows = 1
 " jsx
 let g:jsx_ext_required = 0
 
-" ale prettier-eslint
-let g:ale_fixers = {
-\   'javascript': ['prettier_eslint'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_eslint_executable = 'prettier-eslint'
-let g:ale_javascript_prettier_eslint_use_global = 1
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
