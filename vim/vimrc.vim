@@ -81,7 +81,7 @@ syntax enable
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set background=dark
-colorscheme vim-material 
+colorscheme busybee 
 
 "NERDTree
 " How can I close vim if the only window left open is a NERDTree?
