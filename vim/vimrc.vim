@@ -104,3 +104,6 @@ let g:jsx_ext_required = 0
 " prettier
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+
+" syntax reading for .svelte
+au! BufNewFile,BufRead *.svelte set ft=html
