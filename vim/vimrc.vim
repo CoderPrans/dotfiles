@@ -2,6 +2,7 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'arcticicestudio/nord-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
@@ -16,8 +17,9 @@ call plug#end()
 
 " basics
 filetype plugin indent on
-syntax on set number
-set number relativenumber
+syntax on
+set number
+set cursorline
 set incsearch
 set ignorecase
 set smartcase
@@ -81,7 +83,7 @@ syntax enable
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set background=dark
-colorscheme minimalist " busybee beekai horseradish256 vim-material 
+colorscheme nord "minimalist busybee beekai horseradish256 vim-material 
 
 "NERDTree
 " How can I close vim if the only window left open is a NERDTree?
