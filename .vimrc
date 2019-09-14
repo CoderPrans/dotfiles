@@ -109,3 +109,6 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 
 " syntax reading for .svelte
 au! BufNewFile,BufRead *.svelte set ft=html
+
+" emmet mapping expand abbr key to ,.
+im ,. <C-Y>,
