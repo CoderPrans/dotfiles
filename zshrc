@@ -1,6 +1,6 @@
 export ZSH=/home/pranav/.oh-my-zsh
 
-ZSH_THEME="kolo"
+ZSH_THEME="garyblessington" # garyblessington kolo
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
