@@ -63,6 +63,10 @@ autocmd BufEnter * silent! lcd %:p:h
 autocmd Filetype java
     \ nmap <buffer> <leader>l :!javac % && java %:r<cr>
 
+" execute python
+autocmd Filetype python
+    \ nmap <buffer> <leader>l :!python %<cr>
+
 " custom statusline
 set laststatus=2
 function! GitBranch()
