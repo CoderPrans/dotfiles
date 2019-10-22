@@ -7,6 +7,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 export FZF_BASE="/usr/share/fzf"
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 plugins=(
   git 
