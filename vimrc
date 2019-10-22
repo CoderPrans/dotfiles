@@ -60,7 +60,8 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd BufEnter * silent! lcd %:p:h
 
 " compile and run java
-autocmd Filetype java nmap <buffer> ,l :!javac % && java %:r<cr>
+autocmd Filetype java
+    \ nmap <buffer> <leader>l :!javac % && java %:r<cr>
 
 " custom statusline
 set laststatus=2
@@ -88,6 +89,9 @@ set statusline+=\
 set termguicolors
 set background=dark
 colorscheme ir_black "jellybeans nord tender minimalist monokain
+
+" clear cursorline highlight
+hi clear CursorLineNR
 
 " jsx
 let g:jsx_ext_required = 0
