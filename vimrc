@@ -56,6 +56,12 @@ nmap <silent> <c-l> :wincmd l<CR>
 " change spacing for language specific
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
+" cd into local current directory
+autocmd BufEnter * silent! lcd %:p:h
+
+" compile and run java
+autocmd Filetype java nmap <buffer> ,l :!javac % && java %:r<cr>
+
 " custom statusline
 set laststatus=2
 function! GitBranch()
