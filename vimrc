@@ -1,6 +1,6 @@
-call plug#begin('~/.config/nvim/bundle')
+call plug#begin('~/.vim/plugged')
 " Plug 'christoomey/vim-tmux-navigator'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'arcticicestudio/nord-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
@@ -32,27 +32,29 @@ set noswapfile
 set nowrap
 
 " preferences
-let mapleader = "\<Space>"
-" set pastetoggle=<F2>
-" j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-" Stay in visual mode when indenting. You will never have to run gv after
-" performing an indentation.
+let mapleader = ","
+
+" imapping emmet expand abbr
+im <leader>. <C-Y>,
+
+" nmapping for fuzzy finder
+nmap <leader>f :FZF
+
+" nmapping to clear search highlight
+nmap <silent> <leader>c :nohlsearch<cr>
+
+" stay in visual mode when indenting
 vnoremap < <gv
 vnoremap > >gv
-" Make Y yank everything from the cursor to the end of the line. This makes Y
-" act more like C or D because by default, Y yanks the current line (i.e. the
-" same as yy).
-noremap Y y$
+
 " navigate split screens easily
 nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
+
 " change spacing for language specific
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-
 
 " custom statusline
 set laststatus=2
@@ -76,9 +78,6 @@ set statusline+=\ %*
 set statusline+=\ %p%%
 set statusline+=\ 
 
-" Theme
-syntax enable
-
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set background=dark
@@ -93,6 +92,3 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 
 " syntax reading for .svelte
 au! BufNewFile,BufRead *.svelte set ft=html
-
-" emmet mapping expand abbr key to ,.
-im ,. <C-Y>,
