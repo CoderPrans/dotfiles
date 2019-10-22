@@ -87,7 +87,7 @@ set statusline+=\
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set background=dark
-colorscheme jellybeans " nord tender minimalist monokain
+colorscheme ir_black "jellybeans nord tender minimalist monokain
 
 " jsx
 let g:jsx_ext_required = 0
