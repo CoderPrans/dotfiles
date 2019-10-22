@@ -1,7 +1,5 @@
 call plug#begin('~/.config/nvim/bundle')
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 Plug 'arcticicestudio/nord-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -35,7 +33,7 @@ set nowrap
 
 " preferences
 let mapleader = "\<Space>"
-set pastetoggle=<F2>
+" set pastetoggle=<F2>
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -84,22 +82,7 @@ syntax enable
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set background=dark
-colorscheme nord "minimalist busybee beekai horseradish256 vim-material 
-
-"NERDTree
-" How can I close vim if the only window left open is a NERDTree?
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" toggle NERDTree
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'node_modules']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+colorscheme jellybeans " nord tender minimalist monokain
 
 " jsx
 let g:jsx_ext_required = 0
