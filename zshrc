@@ -7,6 +7,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 export FZF_BASE="/usr/share/fzf"
+# use the_silver_searcher(ag) with fzf
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -15,9 +16,12 @@ plugins=(
   fzf
 )
 
-source $ZSH/oh-my-zsh.sh
-
 export EDITOR='vim'
+
+# pipenv will .venv in project dir
+export PIPENV_VENV_IN_PROJECT=1
+
+source $ZSH/oh-my-zsh.sh
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
