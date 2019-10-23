@@ -8,6 +8,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 export FZF_BASE="/usr/share/fzf"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 plugins=(
   git 
