@@ -67,6 +67,10 @@ autocmd Filetype java
 autocmd Filetype python
     \ nmap <buffer> <leader>l :!python %<cr>
 
+" execute node
+autocmd Filetype javascript
+    \ nmap <buffer> <leader>l :!node %<cr>
+
 " custom statusline
 set laststatus=2
 function! GitBranch()
