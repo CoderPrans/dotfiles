@@ -1,6 +1,6 @@
 export ZSH=/home/pranav/.oh-my-zsh
 
-ZSH_THEME="garyblessington" # garyblessington kolo
+ZSH_THEME="avit" # garyblessington kolo
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
@@ -29,4 +29,5 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
-# alias ls="ls -alh"
+# alias lsl="ls -alh"
+alias tree="tree -I 'node_modules|bin|docs|lib|build'"
