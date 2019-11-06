@@ -53,11 +53,13 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
-" change spacing for language specific
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-
 " cd into local current directory
 autocmd BufEnter * silent! lcd %:p:h
+
+" change spacing for javascript
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+" execute node script
+    \ nmap <buffer> <leader>l :!node %<cr>
 
 " compile and run java
 autocmd Filetype java
@@ -66,10 +68,6 @@ autocmd Filetype java
 " execute python
 autocmd Filetype python
     \ nmap <buffer> <leader>l :!python %<cr>
-
-" execute node
-autocmd Filetype javascript
-    \ nmap <buffer> <leader>l :!node %<cr>
 
 " custom statusline
 set laststatus=2
