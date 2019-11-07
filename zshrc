@@ -1,6 +1,6 @@
 export ZSH=/home/pranav/.oh-my-zsh
 
-ZSH_THEME="avit" # garyblessington kolo
+ZSH_THEME="powerlevel10k/powerlevel10k" # avit garyblessington kolo
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
@@ -31,3 +31,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias lsl="ls -alh"
 alias tree="tree -I 'node_modules|bin|docs|lib|build'"
+alias ll='colorls -lA --sd --gs --group-directories-first'
+alias ls='colorls --group-directories-first'
