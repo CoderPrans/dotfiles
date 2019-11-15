@@ -69,6 +69,10 @@ autocmd Filetype java
 autocmd Filetype python
     \ nmap <buffer> <leader>l :!python %<cr>
 
+" customize Netrw
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+
 " custom statusline
 set laststatus=2
 function! GitBranch()
@@ -91,7 +95,7 @@ set statusline+=\ %*
 set statusline+=\ %p%%
 set statusline+=\ 
 
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" theming vim
 set termguicolors
 set background=dark
 colorscheme ir_black "jellybeans nord tender minimalist monokain

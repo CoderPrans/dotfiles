@@ -27,9 +27,9 @@ source $ZSH/oh-my-zsh.sh
 # ZSH_CUSTOM=/path/to/new-custom-folder
 # export ARCHFLAGS="-arch x86_64"
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+# qxport SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias lsl="ls -alh"
 alias tree="tree -I 'node_modules|bin|docs|lib|build'"
-alias ll='colorls -lA --sd --gs --group-directories-first'
-alias ls='colorls --group-directories-first'
+# alias ll='colorls -lA --sd --gs --group-directories-first'
+# alias ls='colorls --group-directories-first'
