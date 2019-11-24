@@ -70,8 +70,10 @@ autocmd Filetype python
     \ nmap <buffer> <leader>l :!python %<cr>
 
 " customize Netrw
+let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
+let g:netrw_list_hide = '^node_modules/$,^\\..*'
 
 " custom statusline
 set laststatus=2
