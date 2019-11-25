@@ -174,3 +174,6 @@ bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 
 # no border
 default_border pixel 2
+
+# lock 
+bindsym $mod+x exec i3lock -c 1616ee
