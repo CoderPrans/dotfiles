@@ -1,3 +1,6 @@
 ## Dotfiles for CoderPrans
 
-simple vim and zsh configurations
+ - vimrc
+ - zshrc
+ - i3/config
+ - polybar/config
