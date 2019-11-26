@@ -69,6 +69,10 @@ autocmd Filetype java
 autocmd Filetype python
     \ nmap <buffer> <leader>l :!python %<cr>
 
+" execute sh
+autocmd Filetype sh
+    \ nmap <buffer> <leader>l :!./%<cr>
+
 " customize Netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3

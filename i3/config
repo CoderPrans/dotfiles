@@ -1,6 +1,6 @@
 set $mod Mod4
 
-exec --no-startup-id gnome-settings-daemon
+# exec --no-startup-id gnome-settings-daemon
 
 font pango:Cantarell 11
 
@@ -101,6 +101,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 assign [class="Brave-browser"] $ws2
+assign [class="Firefox"] $ws2
 assign [class="Org.gnome.Nautilus"] $ws4
 assign [class="Rhythmbox"] $ws6
 assign [class="libreoffice-startcenter"] $ws5
@@ -164,16 +165,19 @@ bindsym $mod+d exec rofi -show run
 bindsym $mod+Tab exec rofi -show window
 
 # volume keys
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10% && $HOME/.config/i3/dialog.sh " "
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10% && $HOME/.config/i3/dialog.sh " "
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $HOME/.config/i3/dialog.sh ""
 
 # brightness keys
-bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 10 && $HOME/.config/i3/dialog.sh " "
+bindsym XF86MonBrightnessDown exec light -U 10 && $HOME/.config/i3/dialog.sh " "
 
 # no border
 default_border pixel 2
 
 # lock 
 bindsym $mod+x exec i3lock -c 1616ee
+
+# Xdialog defaults to floating
+for_window [class="Xdialog"] floating enable
