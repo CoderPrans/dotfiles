@@ -17,7 +17,7 @@ client.background       #ffffff
 default_border pixel 2
 
 # menu
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show drun
 
 # switch window
 bindsym $mod+Tab exec rofi -show window
@@ -62,6 +62,9 @@ assign [class="Brave-browser"] $ws2
 assign [class="Firefox"] $ws2
 assign [class="Org.gnome.Nautilus"] $ws4
 assign [class="libreoffice-startcenter"] $ws5
+assign [class="libreoffice-calc"] $ws5
+assign [class="libreoffice-impress"] $ws5
+assign [class="libreoffice-writer"] $ws5
 assign [class="Rhythmbox"] $ws6
 assign [class="vlc"] $ws7
 
@@ -153,8 +156,8 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10% && d
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && dialog.sh ""
 
 # brightness keys
-bindsym XF86MonBrightnessUp exec light -A 10 && dialog.sh " "
-bindsym XF86MonBrightnessDown exec light -U 10 && dialog.sh " "
+bindsym XF86MonBrightnessUp exec brightness.sh -i 
+bindsym XF86MonBrightnessDown exec brightness.sh -d
 
 # lock 
 bindsym $mod+x exec i3lock -c 1616ee
