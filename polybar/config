@@ -107,10 +107,11 @@ type = internal/network
 interface = wlp6s0
 interval = 3.0
 
-format-connected-prefix = "    " 
+format-connected-prefix = "   " 
 format-connected = <label-connected>
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %essid%
+label-connected-padding = 1
 
 format-disconnected = 
 label-disconnected = %ifname% disconnected
@@ -159,16 +160,16 @@ format-full-prefix-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/menu
-
 expand-right = true
-
 format-spacing = 1
 
-label-open = "   "
+label-open = "  "
 label-open-foreground = ${colors.foreground-alt}
-label-close = "   "
+;label-open-padding = 1
+label-close = "  "
 label-close-foreground = ${colors.foreground-alt}
 label-separator = |
+label-separator-padding = 1
 label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = reboot

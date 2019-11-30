@@ -21,5 +21,5 @@ if [ -n "$1" ]; then
         echo "incorrect flag"
     fi
 else 
-    echo "use '-i' to increase brightness & '-d' to decrease brightness"
+    echo "use '-i' to increase volume, '-d' to decrease volume & 'x' to toggle mute"
 fi
