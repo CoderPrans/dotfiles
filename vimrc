@@ -11,6 +11,7 @@ Plug 'mxw/vim-jsx'
 Plug 'flazz/vim-colorschemes'
 Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'shime/vim-livedown'
 " call PlugInstall to install new plugins
 call plug#end()
 
@@ -115,6 +116,22 @@ let g:jsx_ext_required = 0
 " prettier
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+
+"" markdown preview with livedown
+" should markdown preview get shown automatically upon opening markdown buffer
+let g:livedown_autorun = 0
+
+" should the browser window pop-up upon previewing
+let g:livedown_open = 1
+
+" the port on which Livedown server will run
+let g:livedown_port = 1337
+
+" the browser to use, can also be firefox, chrome or other, depending on your executable
+let g:livedown_browser = "qutebrowser"
+
+" ,p to preview
+nmap <leader>p :LivedownPreview<cr>
 
 " syntax reading for .svelte
 au! BufNewFile,BufRead *.svelte set ft=html
