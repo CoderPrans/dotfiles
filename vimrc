@@ -39,7 +39,7 @@ let mapleader = ","
 im <leader>. <C-Y>,
 
 " nmapping for fuzzy finder
-nmap <leader>f :FZF
+nmap <leader>f :FZF<cr>
 
 " nmapping to clear search highlight
 nmap <silent> <leader>c :nohlsearch<cr>
@@ -55,23 +55,22 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
 " cd into local current directory
-autocmd BufEnter * silent! lcd %:p:h
+" autocmd BufEnter * silent! lcd %:p:h
 
 " change spacing for javascript
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-" execute node script
-    \ nmap <buffer> <leader>l :!node %<cr>
+au Filetype javascript setlocal ts=2 sts=2 sw=2
 
-" compile and run java
-autocmd Filetype java
+" lcd, compile and run java
+au Filetype java silent! lcd %:p:h
+au Filetype java
     \ nmap <buffer> <leader>l :!javac % && java %:r<cr>
 
 " execute python
-autocmd Filetype python
+au Filetype python
     \ nmap <buffer> <leader>l :!python %<cr>
 
 " execute sh
-autocmd Filetype sh
+au Filetype sh
     \ nmap <buffer> <leader>l :!./%<cr>
 
 " customize Netrw
@@ -117,19 +116,11 @@ let g:jsx_ext_required = 0
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
 
-"" markdown preview with livedown
-" should markdown preview get shown automatically upon opening markdown buffer
+" livedown
 let g:livedown_autorun = 0
-
-" should the browser window pop-up upon previewing
 let g:livedown_open = 1
-
-" the port on which Livedown server will run
 let g:livedown_port = 1337
-
-" the browser to use, can also be firefox, chrome or other, depending on your executable
 let g:livedown_browser = "qutebrowser"
-
 " ,p to preview
 nmap <leader>p :LivedownPreview<cr>
 
