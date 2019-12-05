@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 " Plug 'christoomey/vim-tmux-navigator'
-" Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
@@ -103,7 +103,7 @@ set statusline+=\
 
 " theming vim
 set background=dark
-colorscheme ir_black "jellybeans nord tender minimalist monokain
+colorscheme nord "jellybeans tender minimalist monokain ir_black
 
 " clear cursorline highlight
 hi clear CursorLineNR
