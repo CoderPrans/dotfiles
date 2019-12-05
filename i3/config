@@ -16,9 +16,10 @@ client.background       #ffffff
 
 # 2px border
 default_border pixel 3
-# menu
-bindsym $mod+d exec --no-startup-id "rofi -modi drun -show drun -theme Arc-Dark.rasi"
-
+# open
+bindsym $mod+o exec --no-startup-id "rofi -modi drun -show drun -theme Arc-Dark.rasi"
+# dmenu
+bindsym $mod+d exec --no-startup-id "dmenu_run"
 # switch window
 bindsym $mod+Tab exec --no-startup-id "rofi -show window -theme Arc-Dark.rasi"
 
@@ -69,7 +70,7 @@ assign [class="Rhythmbox"] $ws6
 assign [class="vlc"] $ws7
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id "gnome-terminal"
+bindsym $mod+Return exec --no-startup-id "i3-sensible-terminal"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -132,7 +133,7 @@ exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 exec_always --no-startup-id "xautolock -time 5 -locker blurlock.sh"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
+mode " resize " {
         # These bindings trigger as soon as you enter the resize mode
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
@@ -151,7 +152,7 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode " resize "
 
 # volume keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id "volume.sh -i" 

@@ -102,7 +102,6 @@ set statusline+=\ %p%%
 set statusline+=\ 
 
 " theming vim
-set termguicolors
 set background=dark
 colorscheme ir_black "jellybeans nord tender minimalist monokain
 
@@ -120,7 +119,7 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 let g:livedown_autorun = 0
 let g:livedown_open = 1
 let g:livedown_port = 1337
-let g:livedown_browser = "qutebrowser"
+let g:livedown_browser = "surf"
 " ,p to preview
 nmap <leader>p :LivedownPreview<cr>
 
