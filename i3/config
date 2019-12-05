@@ -6,9 +6,9 @@ font pango:Cantarell 11
 
 # class                 border  backgr. text    indicator child_border
 #client.focused         #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused          #222222 #222222 #ffffff #222222   #222222
-client.focused_inactive #000000 #000000 #ffffff #000000   #000000
-client.unfocused        #000000 #000000 #888888 #000000   #000000
+client.focused          #222222 #222222 #ffffff #222222   #333333
+client.focused_inactive #000000 #000000 #ffffff #000000   #111111
+client.unfocused        #000000 #000000 #888888 #000000   #111111
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
@@ -16,7 +16,6 @@ client.background       #ffffff
 
 # 2px border
 default_border pixel 3
-
 # menu
 bindsym $mod+d exec --no-startup-id "rofi -modi drun -show drun -theme Arc-Dark.rasi"
 
@@ -129,6 +128,8 @@ bindsym $mod+Shift+e exec --no-startup-id \
 exec_always --no-startup-id "nitrogen --restore"
 # launch polybar
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
+# autolock in 10 mins
+exec_always --no-startup-id "xautolock -time 5 -locker blurlock.sh"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -162,8 +163,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id "brightness.sh -i"
 bindsym XF86MonBrightnessDown exec --no-startup-id "brightness.sh -d"
 
 # lock 
-bindsym $mod+x exec --no-startup-id \
-    "convert $HOME/Pictures/Wallpapers/wallhere05.jpg RGB:- | i3lock --raw 1366x768:rgb --image /dev/stdin -f -e"
+bindsym $mod+x exec --no-startup-id "blurlock.sh"
+   # "convert $HOME/Pictures/Wallpapers/wallhere05.jpg RGB:- | i3lock --raw 1366x768:rgb --image /dev/stdin -f -e"
 
 # printscreen
 bindsym Print exec --no-startup-id \
