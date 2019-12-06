@@ -33,3 +33,7 @@ source $ZSH/oh-my-zsh.sh
 alias tree="tree -I 'node_modules|bin|docs|lib|build'"
 # alias ll='colorls -lA --sd --gs --group-directories-first'
 # alias ls='colorls --group-directories-first'
+
+# vi mode
+bindkey -v
+bindkey '^?' backward-delete-char

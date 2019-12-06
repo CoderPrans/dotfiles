@@ -15,13 +15,13 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 # 2px border
-default_border pixel 3
+default_border pixel 1
 # open
-bindsym $mod+o exec --no-startup-id "rofi -modi drun -show drun -theme Arc-Dark.rasi"
+bindsym $mod+o exec --no-startup-id "rofi -modi drun -show drun"
 # dmenu
 bindsym $mod+d exec --no-startup-id "dmenu_run"
 # switch window
-bindsym $mod+Tab exec --no-startup-id "rofi -show window -theme Arc-Dark.rasi"
+bindsym $mod+Tab exec --no-startup-id "rofi -show window"
 
 # Workspaces
 set $ws1 " 1: Home "

@@ -1,6 +1,5 @@
 !! Colorscheme
 
-
 #define nord0 #2E3440
 #define nord1 #3B4252
 #define nord2 #434C5E
@@ -42,10 +41,10 @@
 *.color15: nord6
 
 !! URxvt Appearance Hack Nerd Font:style=Regular
-URxvt.font: xft:Hack Nerd Font:style=Regular:size=9.3
-URxvt.boldFont: xft:Hack Nerd Font:style=Bold:size=9.3
-URxvt.italicFont: xft:Hack Nerd Font:style=Italic:size=9.3
-URxvt.boldItalicfont: xft:Hack Nerd Font:style=Bold Italic:size=9.3
+URxvt.font: xft:Hack Nerd Font:style=Regular:pixelsize=13
+URxvt.boldFont: xft:Hack Nerd Font:style=Bold:pixelsize=13
+URxvt.italicFont: xft:Hack Nerd Font:style=Italic:pixelsize=13
+URxvt.boldItalicfont: xft:Hack Nerd Font:style=Bold Italic:pixelsize=13
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
@@ -77,3 +76,16 @@ URxvt*.url-launcher:surf
 URxvt*.matcher.button:1
 URxvt*.keysym.C-Delete:perl:matcher:last
 URxvt*.keysym.M-Delete:perl:matcher:list
+
+rofi.show-icons:            false
+rofi.modi:                  drun,run,window,ssh
+rofi.lines:                 7
+rofi.line-padding:          10
+rofi.matching:              fuzzy
+rofi.bw:                    0
+rofi.padding:               0
+rofi.separator-style:       none
+rofi.hide-scrollbar:        true
+rofi.line-margin:           0
+rofi.font:                  sans-serif 10
+rofi.theme: /usr/share/rofi/themes/nord.rasi
