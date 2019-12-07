@@ -35,5 +35,5 @@ alias tree="tree -I 'node_modules|bin|docs|lib|build'"
 # alias ls='colorls --group-directories-first'
 
 # vi mode
-bindkey -v
-bindkey '^?' backward-delete-char
+bindkey '^[' vi-cmd-mode
+export KEYTIMEOUT=1
