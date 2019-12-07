@@ -12,6 +12,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'shime/vim-livedown'
+Plug 'junegunn/fzf.vim'
+Plug 'dbakker/vim-projectroot'
 " call PlugInstall to install new plugins
 call plug#end()
 
@@ -38,8 +40,18 @@ let mapleader = ","
 " imapping emmet expand abbr
 im <leader>. <C-Y>,
 
+" cd to project root
+nmap <leader>d :ProjectRootCD<cr>
+
 " nmapping for fuzzy finder
-nmap <leader>f :FZF<cr>
+nmap <leader>f :ProjectRootExe Files<cr>
+nmap gs :ProjectRootExe GFiles?<cr>
+nmap <leader>ag :ProjectRootExe Ag<cr>
+
+" buffer management
+"nmap bn :bn<cr>
+nmap bd :bd<cr>
+nmap ls :Buffers<cr>
 
 " nmapping to clear search highlight
 nmap <silent> <leader>c :nohlsearch<cr>
@@ -55,13 +67,12 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
 " cd into local current directory
-" autocmd BufEnter * silent! lcd %:p:h
+au BufEnter * silent! lcd %:p:h
 
 " change spacing for javascript
 au Filetype javascript setlocal ts=2 sts=2 sw=2
 
 " lcd, compile and run java
-au Filetype java silent! lcd %:p:h
 au Filetype java
     \ nmap <buffer> <leader>l :!javac % && java %:r<cr>
 
