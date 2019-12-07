@@ -130,7 +130,7 @@ exec_always --no-startup-id "nitrogen --restore"
 # launch polybar
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 # autolock in 10 mins
-exec_always --no-startup-id "xautolock -time 5 -locker blurlock.sh"
+exec_always --no-startup-id "xautolock -time 5 -locker blurlock.sh -corners +00-"
 
 # resize window (you can also use the mouse for that)
 mode " resize " {
