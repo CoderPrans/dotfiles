@@ -66,23 +66,18 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
-" cd into local current directory
-au BufEnter * silent! lcd %:p:h
-
 " change spacing for javascript
 au Filetype javascript setlocal ts=2 sts=2 sw=2
 
 " lcd, compile and run java
 au Filetype java
-    \ nmap <buffer> <leader>l :!javac % && java %:r<cr>
-
+    \ nmap <buffer> <leader>l :!cd %:p:h && javac %:t && java %:t:r<cr>
 " execute python
 au Filetype python
-    \ nmap <buffer> <leader>l :!python %<cr>
-
+    \ nmap <buffer> <leader>l :!cd %:p:h && python %:t<cr>
 " execute sh
 au Filetype sh
-    \ nmap <buffer> <leader>l :!./%<cr>
+    \ nmap <buffer> <leader>l :!cd %:p:h && ./%:t<cr>
 
 " customize Netrw
 let g:netrw_banner = 0
