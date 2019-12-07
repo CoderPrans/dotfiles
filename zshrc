@@ -8,8 +8,14 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 export FZF_BASE="/usr/share/fzf"
 # use the_silver_searcher(ag) with fzf
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden -p $HOME/.ignore -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--height 40%"
+export FZF_ALT_C_COMMAND="find -L . -mindepth 1 \\( -path '*/\\.*' \
+    -o -path '*/node_modules' -o -path '*/venv' -o -fstype 'sysfs' \
+    -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) \
+    -prune -o -type d -print 2> /dev/null | cut -b3-"
+export FZF_ALT_C_OPTS="--preview 'tree -C -I 'node_modules' {} | head -200'"
 
 plugins=(
   git 
@@ -37,3 +43,10 @@ alias tree="tree -I 'node_modules|bin|docs|lib|build'"
 # vi mode
 bindkey '^[' vi-cmd-mode
 export KEYTIMEOUT=1
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+fe() {
+  local files
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
