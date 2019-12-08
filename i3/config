@@ -129,9 +129,9 @@ bindsym $mod+Shift+e exec --no-startup-id \
 exec_always --no-startup-id "nitrogen --restore"
 # launch polybar
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
-# autolock in 10 mins
-exec_always --no-startup-id "xautolock -time 5 -locker blurlock.sh -corners +00-"
-
+# autolock in 10 mins and when waking from suspend
+exec_always --no-startup-id "xautolock -time 10 -locker blurlock.sh -corners +00-"
+exec_always --no-startup-id "xss-lock -- blurlock.sh -d"
 # resize window (you can also use the mouse for that)
 mode " resize " {
         # These bindings trigger as soon as you enter the resize mode
