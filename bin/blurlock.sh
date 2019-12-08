@@ -4,7 +4,9 @@
 import -window root /tmp/screenshot.png
 
 # blur it
-convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
+convert /tmp/screenshot.png -blur 0x5 \
+    "$HOME/.config/i3/token.png" -gravity center \
+    -composite /tmp/screenshotblur.png
 rm /tmp/screenshot.png
 
 # lock the screen
