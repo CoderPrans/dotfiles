@@ -1,0 +1,23 @@
+#!/usr/bin/sh
+
+# autostart
+sxhkd &
+$HOME/.config/polybar/launch.sh &
+nitrogen --restore &
+xautolock -time 10 -locker blurlock.sh -corners +00- &
+xss-lock -- blurlock.sh -d &
+
+bspc monitor -d '  Home' '  Web' '' '' '' '' '' '' '' '' 
+
+bspc config border_width         2
+bspc config window_gap           8
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
