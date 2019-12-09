@@ -23,7 +23,7 @@ plugins=(
 )
 
 export EDITOR='vim'
-export XDG_CONFIG_HOME='$HOME/.config'
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # pipenv will .venv in project dir
 export PIPENV_VENV_IN_PROJECT=1
