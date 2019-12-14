@@ -49,9 +49,9 @@ nmap gs :ProjectRootExe GFiles?<cr>
 nmap <leader>ag :ProjectRootExe Ag<cr>
 
 " buffer management
-"nmap bn :bn<cr>
+nmap bn :bn<cr>
 nmap bd :bd<cr>
-nmap bs :Buffers<cr>
+nmap bl :Buffers<cr>
 
 " nmapping to clear search highlight
 nmap <silent> <leader>c :nohlsearch<cr>

@@ -4,8 +4,10 @@
 sxhkd &
 $HOME/.config/polybar/launch.sh &
 nitrogen --restore &
-xautolock -time 10 -locker blurlock.sh -corners +00- &
 xss-lock -- blurlock.sh -d &
+# xautolock -time 10 -locker blurlock.sh -corners +00- &
+# blueman-applet &
+# nm-applet &
 
 bspc monitor -d '  Home' '  Web' '' '' '' '' '' '' '' '' 
 
@@ -20,6 +22,7 @@ bspc config external_rules_command "$HOME/.config/bspwm/rules.sh"
 
 bspc rule -a Gimp-2.10 desktop='^8' state=floating follow=on
 bspc rule -a Brave-browser desktop='^2'
+bspc rule -a Firefox desktop='^2'
 bspc rule -a vlc desktop='^7'
 # bspc rule -a Chromium desktop='^2'
 # bspc rule -a mplayer2 state=floating
