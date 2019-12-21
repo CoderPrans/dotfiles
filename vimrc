@@ -103,8 +103,9 @@ set statusline+=\ %m
 set statusline+=%=
 set statusline+=\ %l,%c
 set statusline+=\ %*
-set statusline+=\ %*
 set statusline+=\ %p%%
+set statusline+=\ %*
+set statusline+=\ %y
 set statusline+=\ 
 
 " theming vim
