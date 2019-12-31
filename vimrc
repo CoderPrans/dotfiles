@@ -10,7 +10,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'flazz/vim-colorschemes'
 Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'prettier/vim-prettier'
 Plug 'shime/vim-livedown'
 Plug 'junegunn/fzf.vim'
 Plug 'dbakker/vim-projectroot'
@@ -69,9 +69,12 @@ nmap <silent> <c-l> :wincmd l<CR>
 " change spacing for javascript
 au Filetype javascript setlocal ts=2 sts=2 sw=2
 
-" lcd, compile and run java
+" cd, compile and run java
 au Filetype java
     \ nmap <buffer> <leader>l :!cd %:p:h && javac %:t && java %:t:r<cr>
+" cd, compile and run rust
+au Filetype rust
+    \ nmap <buffer> <leader>l :!cd %:p:h && rustc %:t && ./%:t:r<cr>
 " execute python
 au Filetype python
     \ nmap <buffer> <leader>l :!cd %:p:h && python %:t<cr>
