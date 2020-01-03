@@ -1,0 +1,11 @@
+export ZSH="/data/data/com.termux/files/home/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# vi mode
+bindkey '^[' vi-cmd-mode
+export KEYTIMEOUT=1
