@@ -136,7 +136,11 @@ XF86MonBrightnessDown
 
 # lock 
 super + x
-    blurlock.sh -d
+    blurlock.sh -d 
+
+# sofblock bluetooth & wifi
+super + shift + {b,w}
+    softblock.sh {-b,-w}
 
 # printscreen
 Print

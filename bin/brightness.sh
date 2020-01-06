@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ -n "$1" ]; then
     if [ "$1" == "-d" ]; then
@@ -13,5 +13,5 @@ if [ -n "$1" ]; then
         echo "incorrect flag"
     fi
 else 
-    echo "use '-i' to increase brightness & '-d' to decrease brightness"
+    echo "Usage: brightness.sh -i|d"
 fi
