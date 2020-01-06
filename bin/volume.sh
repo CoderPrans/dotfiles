@@ -3,7 +3,7 @@
 function currvolume {
     pactl list sinks \
         | grep 'front-right:' \
-        | awk '{print $12}'
+        | awk '{print $12}' | xargs
 }
 
 function ismute {
