@@ -10,7 +10,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'flazz/vim-colorschemes'
 Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' } 
 Plug 'shime/vim-livedown'
 Plug 'junegunn/fzf.vim'
 Plug 'dbakker/vim-projectroot'
