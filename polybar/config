@@ -37,7 +37,7 @@ font-1 = SauceCodePro Nerd Font:style=Regular:pixelsize=11;2
 
 modules-left = bspwm i3 title
 modules-center = date
-modules-right = cmus wireless eth bluetooth battery powermenu
+modules-right = cmus spotify wireless eth bluetooth battery powermenu
 
 cursor-click = pointer                                             
 
@@ -223,6 +223,14 @@ format-foreground = ${colors.foreground-alt}
 label = %output%
 label-maxlen = 33
 padding = 3
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = "♪  "
+format = <label>
+format-foreground = ${colors.foreground-alt}
+exec = python ~/.config/polybar/spotify_status.py -f '{artist}: {song}'
 
 [global/wm]
 margin-top = 0
