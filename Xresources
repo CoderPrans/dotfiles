@@ -68,15 +68,16 @@ URxvt*.keysym.Control-Right: \033[1;5C
 URxvt*.keysym.Control-Left: \033[1;5D
 
 !! Copy Paste & Other Extensions
-URxvt*.perl-ext-common:default,matcher
-URxvt*.keysym.C-S-Up:perl:font:increment
-URxvt*.keysym.C-S-Down:perl:font:decrement
+URxvt*.perl-ext-common:default,matcher,font-size
+URxvt*.perl-lib:$HOME/.urxvt/ext/font-size
+! URxvt*.keysym.C-S-Up:font-size:increse
+! URxvt*.keysym.C-S-Down:font-size:decrese
 
 !--- URL Matcher
 URxvt*.url-launcher:surf
 URxvt*.matcher.button:1
-URxvt*.keysym.C-Delete:perl:matcher:last
-URxvt*.keysym.M-Delete:perl:matcher:list
+URxvt*.keysym.C-Delete:matcher:last
+URxvt*.keysym.M-Delete:matcher:list
 
 rofi.show-icons:            false
 rofi.modi:                  drun,run,window,ssh
@@ -92,4 +93,5 @@ rofi.font:                  sans-serif 10
 rofi.theme: /usr/share/rofi/themes/nord.rasi
 
 !! Set a default font and font size as below:
-st.font: Hack Nerd Font-12;
+st.font: Hack Nerd Font-12
+st.lines-padding: 10
