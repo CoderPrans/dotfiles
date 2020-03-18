@@ -120,6 +120,10 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+#
+# additional
+#
+
 # volume keys
 XF86AudioRaiseVolume
     volume.sh -i 
@@ -139,15 +143,15 @@ super + x
     blurlock.sh -d 
 
 # sofblock bluetooth & wifi
-super + shift + {b,w}
-    softblock.sh {-b,-w}
+# super + shift + {b,w}
+#     softblock.sh {-b,-w}
 
 # printscreen
 Print
     import -window root $HOME/Pictures/Screens/shot@$( date '+%m-%d-%y_%H:%M:%S').png && notify-send 'Screen Captured'
 
 alt + o
-    rofi -modi drun -show drun
+    rofi -modi drun -show drun -show-icons
 
 alt + Tab
     rofi -show window
