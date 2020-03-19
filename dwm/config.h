@@ -14,10 +14,17 @@ static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char col_selec[]       = "#817f7f";
+static const unsigned int baralpha = 0xd0;
+static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_selec  },
+};
+static const unsigned int alphas[][3]      = {
+	/*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */
@@ -53,6 +60,7 @@ static const Layout layouts[] = {
 #define XF86AudioLowerVolume		0x1008ff11
 #define XF86AudioRaiseVolume		0x1008ff13
 #define MODKEY Mod4Mask
+#define ALTKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -72,12 +80,18 @@ static const char *volumedown[] = {"volume.sh", "-d", NULL};
 static const char *volumeup[] = {"volume.sh", "-i", NULL};
 static const char *volumemutetoggle[] = {"volume.sh", "-x", NULL};
 static const char *screenshot[] = {"screenshot.sh", NULL};
+static const char *rofidrun[] = {"rofi", "-modi", "drun", "-show", "drun", "-show-icons", NULL};
+static const char *rofiwindow[] = {"rofi", "-show", "window", NULL};
+static const char *emojis[] = {"dmenuemoji", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+    { ALTKEY,                       XK_o,      spawn,          {.v = rofidrun } },
+    { ALTKEY,                       XK_Tab,    spawn,          {.v = rofiwindow } },
+    { ALTKEY,                       XK_e,      spawn,          {.v = emojis } },
     {0,                             XK_Print,  spawn,          {.v = screenshot } }, 
     {0,                             XF86MonBrightnessDown,  spawn,          {.v = brightnessdown } }, 
     {0,                             XF86MonBrightnessUp,    spawn,          {.v = brightnessup } }, 
