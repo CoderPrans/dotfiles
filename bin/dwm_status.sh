@@ -8,17 +8,17 @@ print_wifi() {
     # else
     #     echo 
     # fi
-   nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -c5- 
+    nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -c5- 
 }
 
 print_batstatus() {
     status=$(acpi -b | awk '{print $3}')
     case $status in
         "Charging,")
-            echo  
+            echo  
             ;;
         "Discharging,")
-            echo  
+            echo  
             ;;
         *)
     esac
@@ -28,11 +28,11 @@ print_bat() {
 }
 
 print_date() {
-    date "+%a %d, %H:%M:%S" 
+    date "+%a %d, %R" 
 }
 
 while true; do
-    xsetroot -name " $(print_wifi)  $(print_batstatus) $(print_bat)  $(print_date)"
-    sleep 1   # Update time every minute
+    xsetroot -name " $(print_wifi) $(print_batstatus) $(print_bat) $(print_date)"
+    sleep 5   # 1m for time every minute
 done &
 

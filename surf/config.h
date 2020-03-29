@@ -88,8 +88,10 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
  * the list.
  */
 static SiteStyle styles[] = {
-	/* regexp               file in $styledir */
-	{ ".*",                 "default.css" },
+	/* regexp                   file in $styledir */
+	{ ".*github.com.*",         "github.css" },
+	{ ".*web.whatsapp.com.*",   "whatsapp.css" },
+	{ ".*",                     "default.css" },
 };
 
 #define MODKEY GDK_CONTROL_MASK
