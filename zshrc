@@ -51,6 +51,14 @@ fe() {
   IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
+# fbr choose and switch to a local or remote git branch
+fbr() {
+  local branches branch
+  branches=$(git branch -a) && 
+      branch=$(echo "$branches" | fzf +s +m -e) && 
+      git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" \
+      | sed "s:.* ::") 
+}
 
 # using nvm
 export NVM_DIR="$HOME/.config/nvm"
