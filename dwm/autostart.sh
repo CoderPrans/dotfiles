@@ -1,9 +1,12 @@
 #!/bin/sh
 
-nitrogen --restore &
-xss-lock -- blurlock.sh -d &
-blueman-applet &
+urxvtd &
+compton &
 nm-applet &
+blueman-applet &
+xss-lock -- blurlock.sh -d &
+feh --bg-scale $(cat ~/.local/mybg) &
+#nitrogen --restore &
 
 # Statusbar loop
 # while true; do
