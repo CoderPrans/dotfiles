@@ -1,6 +1,6 @@
 #!/bin/sh
 
-urxvtd &
+#urxvtd &
 compton &
 nm-applet &
 blueman-applet &
