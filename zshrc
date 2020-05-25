@@ -28,6 +28,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # pipenv will .venv in project dir
 export PIPENV_VENV_IN_PROJECT=1
 
+# deno
+export DENO_INSTALL="/home/pranav/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 source $ZSH/oh-my-zsh.sh
 
 # Would you like to use another custom folder than $ZSH/custom?
