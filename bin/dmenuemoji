@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# grep -v "#" ~/.emojis | dmenu -i -l 10 -fn Monospace-14 | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
+
+# pgrep -x dunst >/dev/null && notify-send "$(xclip -o -selection clipboard) copied to clipboard."
+
+xclip -h 2>/dev/null || exit 1
+
+chosen=$(cut -d ';' -f1 ~/.local/emojis | dmenu -i -l 10 -fn "Sauce Code Pro-16" | sed "s/ .*//")
+
+[ "$chosen" != "" ] || exit
+
+# If you run this command with an argument, it will automatically insert the character.
+if [ -n "$1" ]; then
+	xdotool key Shift+Insert
+else
+	echo "$chosen" | tr -d '\n' | xclip -selection clipboard
+	notify-send "'$chosen' copied to clipboard." &
+fi

@@ -1,0 +1,7 @@
+/usr/bin/sh
+
+id=$(xdotool search --class scratch)
+
+if [ "$id" != "" ] ; then    
+        bspc node "$id" --flag hidden -f
+fi

@@ -1,0 +1,1 @@
+so ~/Documents/dotfiles/vimrc

@@ -1,0 +1,35 @@
+#!/usr/bin/sh
+
+# autostart
+sxhkd &
+$HOME/.config/polybar/launch.sh &
+nitrogen --restore &
+xss-lock -- blurlock.sh -d &
+compton &
+# xautolock -time 10 -locker blurlock.sh -corners +00- &
+blueman-applet &
+nm-applet &
+
+bspc monitor -d '' '' '' '' '' '' '' '' '' '' 
+
+bspc config border_width         2
+bspc config window_gap           10
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config external_rules_command "$HOME/.config/bspwm/rules.sh"
+
+bspc rule -a Gimp-2.10 desktop='^8'
+bspc rule -a Gcolor3 state=floating
+bspc rule -a Brave-browser desktop='^2'
+bspc rule -a Firefox desktop='^2'
+bspc rule -a vlc desktop='^7'
+# bspc rule -a Chromium desktop='^2'
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
+
+st -c scratch &
+bspc rule -a scratch sticky=on state=floating hidden=on

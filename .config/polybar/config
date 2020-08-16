@@ -1,0 +1,244 @@
+[colors]
+background = #99000000
+#222
+background-alt = #111
+#131217
+foreground = #ccc
+foreground-alt = #666
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/main]
+enable-ipc = true
+;tray-position = right
+;tray-background = #222
+width = 100%
+height = 20
+radius = 0
+fixed-center = true
+wm-restack = bspwm
+#override-redirect = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Cantarell:style=Bold:size=11;2
+font-1 = SauceCodePro Nerd Font:style=Regular:pixelsize=11;2
+
+modules-left = bspwm i3 title
+modules-center = date
+modules-right = cmus spotify battery powermenu
+
+cursor-click = pointer                                             
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%%name%
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-foreground = ${colors.foreground-alt}
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = 
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+strip-wsnumbers = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 0
+label-mode-foreground = #000
+label-mode-background = ${colors.background}
+; focused = Active workspace on focused monitor
+label-focused = %name%
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.foreground}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-foreground = ${colors.foreground-alt}
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+[module/title]
+type = internal/xwindow
+; Available tags:
+;   <label> (default)
+format = <label>
+format-foreground = ${colors.foreground-alt}
+format-padding = 0
+
+label = %title%
+label-maxlen = 50
+
+; Used instead of label when there is no window title
+; Available tokens:
+;   None
+label-empty = 
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+blacklist-1 = caps lock
+
+format-prefix-foreground = ${colors.foreground-alt}
+label-layout = %layout%
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+
+[module/wireless]
+type = internal/network
+interface = wlp6s0
+interval = 3.0
+
+format-connected-prefix = "   " 
+format-connected = <label-connected>
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %essid%
+label-connected-foreground = ${colors.foreground-alt}
+label-connected-padding = 1
+label-connected-maxlen = 10
+
+format-disconnected = 
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = eth0
+interval = 3.0
+
+#format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = %a %d 
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date%  %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging-prefix = " " 
+format-charging-prefix-foreground = ${colors.primary}
+
+format-discharging-prefix = " "
+format-discharging-prefix-foreground = ${colors.foreground-alt}
+
+format-full-prefix = ""
+format-full-prefix-foreground = ${colors.foreground-alt}
+
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+
+label-open = "  "
+label-open-foreground = ${colors.foreground-alt}
+;label-open-padding = 1
+label-close = "  "
+label-close-foreground = ${colors.foreground-alt}
+label-separator = |
+label-separator-padding = 1
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-foreground = ${colors.secondary}
+menu-0-0-exec = "i3-nagbar -t warning -m 'You pressed the reboot option. Do you really want to reboot? ' -B 'Yes, reboot' 'systemctl reboot'"
+menu-0-1 = poweroff
+menu-0-1-foreground = ${colors.secondary}
+menu-0-1-exec = "i3-nagbar -t warning -m 'You pressed the poweroff option. Do you really want to poweroff? ' -B 'Yes, poweroff' 'systemctl poweroff'" 
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/system-bluetooth-bluetoothctl.sh
+tail = true
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %output%
+label-foreground = ${colors.foreground-alt}
+label-maxlen = 10
+
+[module/cmus]
+type = custom/script
+
+exec = ~/.config/polybar/cmus.sh
+exec-if = pgrep -x cmus
+interval = 1
+
+scroll-up = cmus-remote --next
+scroll-down = cmus-remote --prev
+click-left = cmus-remote --pause
+
+label-font = 3
+format = <label>
+format-foreground = ${colors.foreground-alt} 
+label = %output%
+label-maxlen = 33
+padding = 3
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = "♪  "
+format = <label>
+format-foreground = ${colors.foreground-alt}
+exec = python ~/.config/polybar/spotify_status.py -f '{artist}: {song}'
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+; vim:ft=dosini
+
