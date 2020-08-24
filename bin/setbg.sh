@@ -2,4 +2,4 @@
 
 path="$(pwd)/$1"
 
-[ "$1" ] && feh --bg-scale "$path" && echo $path > ~/.local/mybg 
+[ "$1" ] && feh --bg-center "$path" && echo $path > ~/.local/mybg 
