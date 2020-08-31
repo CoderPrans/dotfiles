@@ -28,9 +28,12 @@ export FZF_ALT_C_OPTS="--preview 'tree -C -I 'node_modules' {} | head -200'"
 plugins=(
   git 
   fzf
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 export EDITOR='vim'
+export TERM='st-256color'
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # pipenv will .venv in project dir
@@ -41,6 +44,15 @@ export DENO_INSTALL="/home/pranav/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
+
+# zsh-syntax-highlighting
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -55,7 +67,9 @@ alias tree="tree -I 'node_modules|bin|docs|lib|build|target'"
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # vi mode
-bindkey '^[' vi-cmd-mode
+# bindkey '^[' vi-cmd-mode
+bindkey -v
+bindkey -v '^?' backward-delete-char
 export KEYTIMEOUT=1
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor

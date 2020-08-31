@@ -9,8 +9,9 @@ Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'flazz/vim-colorschemes'
+Plug 'quanganhdo/grb256'
 Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' } 
+Plug 'prettier/vim-prettier'
 Plug 'shime/vim-livedown'
 Plug 'junegunn/fzf.vim'
 Plug 'dbakker/vim-projectroot'
@@ -113,7 +114,7 @@ set statusline+=\
 
 " theming vim
 set background=dark
-colorscheme gruvbox "nord jellybeans tender minimalist monokain ir_black
+colorscheme grb256 "nord jellybeans tender minimalist monokain gruvbox ir_black
 
 " clear cursorline highlight
 hi clear CursorLineNR

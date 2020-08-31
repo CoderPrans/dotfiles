@@ -116,24 +116,45 @@ static const char *colorname[] = {
 	/* "black", */
 
     /* gruvbox colorscheme /8 normal colors */
-    [0] = "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-    [1] = "#cc241d", /* red     */
-    [2] = "#98971a", /* green   */
-    [3] = "#d79921", /* yellow  */
-    [4] = "#458588", /* blue    */
-    [5] = "#b16286", /* magenta */
-    [6] = "#689d6a", /* cyan    */
-    [7] = "#a89984", /* white   */
+    /* [0] = "#282828", /1* hard contrast: #1d2021 / soft contrast: #32302f *1/ */
+    /* [1] = "#cc241d", /1* red     *1/ */
+    /* [2] = "#98971a", /1* green   *1/ */
+    /* [3] = "#d79921", /1* yellow  *1/ */
+    /* [4] = "#458588", /1* blue    *1/ */
+    /* [5] = "#b16286", /1* magenta *1/ */
+    /* [6] = "#689d6a", /1* cyan    *1/ */
+    /* [7] = "#a89984", /1* white   *1/ */
+    
+    /* /1* 8 bright colors *1/ */
+    /* [8]  = "#928374", /1* black   *1/ */
+    /* [9]  = "#fb4934", /1* red     *1/ */
+    /* [10] = "#b8bb26", /1* green   *1/ */
+    /* [11] = "#fabd2f", /1* yellow  *1/ */
+    /* [12] = "#83a598", /1* blue    *1/ */
+    /* [13] = "#d3869b", /1* magenta *1/ */
+    /* [14] = "#8ec07c", /1* cyan    *1/ */
+    /* [15] = "#ebdbb2", /1* white   *1/ */
+
+    /* ir_black / 8 normal colors */
+   "#0F0F0F", 
+   "#FF6C60", 
+   "#77B743", 
+   "#3E3E2D", 
+   "#427F9E", 
+   "#FF73FD", 
+   "#C6C5FE", 
+   "#EEEEEE", 
     
     /* 8 bright colors */
-    [8]  = "#928374", /* black   */
-    [9]  = "#fb4934", /* red     */
-    [10] = "#b8bb26", /* green   */
-    [11] = "#fabd2f", /* yellow  */
-    [12] = "#83a598", /* blue    */
-    [13] = "#d3869b", /* magenta */
-    [14] = "#8ec07c", /* cyan    */
-    [15] = "#ebdbb2", /* white   */
+   "#7C7C7C", 
+   "#FFB6B0", 
+   "#CEFFAC", 
+   "#FFFFCB", 
+   "#B5DCFE", 
+   "#FF9CFE", 
+   "#DFDFFE", 
+   "#FFFFFF", 
+
 };
 
 
