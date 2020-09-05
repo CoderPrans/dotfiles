@@ -67,9 +67,7 @@ alias tree="tree -I 'node_modules|bin|docs|lib|build|target'"
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # vi mode
-# bindkey '^[' vi-cmd-mode
-bindkey -v
-bindkey -v '^?' backward-delete-char
+bindkey '^[' vi-cmd-mode
 export KEYTIMEOUT=1
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
