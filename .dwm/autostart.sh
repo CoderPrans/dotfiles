@@ -5,7 +5,7 @@ compton &
 nm-applet &
 blueman-applet &
 xss-lock -- blurlock.sh -d &
-feh --bg-center "$(cat ~/.local/mybg)" &
+feh --bg-scale "$(cat ~/.local/mybg)" &
 #nitrogen --restore &
 
 # Statusbar loop
