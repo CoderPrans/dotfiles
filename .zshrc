@@ -41,7 +41,8 @@ export PIPENV_VENV_IN_PROJECT=1
 
 # deno
 export DENO_INSTALL="/home/pranav/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+
+export PATH="$DENO_INSTALL/bin:$PATH:/home/pranav/.local/bin"
 
 source $ZSH/oh-my-zsh.sh
 

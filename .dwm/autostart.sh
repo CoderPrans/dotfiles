@@ -1,6 +1,7 @@
 #!/bin/sh
 
 #urxvtd &
+setxkbmap us,in -variant ,hin-kagapa -option grp:alt_shift_toggle
 compton &
 nm-applet &
 blueman-applet &

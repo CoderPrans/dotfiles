@@ -3,10 +3,11 @@
 # autostart
 sxhkd &
 $HOME/.config/polybar/launch.sh &
+setxkbmap us,in -variant ,hin-kagapa -option grp:alt_shift_toggle
 nitrogen --restore &
 xss-lock -- blurlock.sh -d &
 compton &
-# xautolock -time 10 -locker blurlock.sh -corners +00- &
+xautolock -time 10 -locker blurlock.sh -corners +00- &
 blueman-applet &
 nm-applet &
 
