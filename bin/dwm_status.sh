@@ -46,7 +46,7 @@ print_date() {
 }
 
 while true; do
-    xsetroot -name " $(print_xkb) $(print_wifi)$(print_mem) $(print_batstatus) $(print_bat) $(print_date)"
+    xsetroot -name " $(print_xkb) $(print_wifi) $(print_mem) $(print_batstatus) $(print_bat) $(print_date)"
     # echo $(print_wifi) $(print_batstatus) $(print_bat) $(print_date) sleep 5   # 1m for time every minute
     sleep 1
 done &
