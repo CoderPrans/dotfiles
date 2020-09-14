@@ -5,18 +5,13 @@ print_xkb() {
 }
 
 print_wifi() {
-    # wlp=$(grep "^\s*w" /proc/net/wireless | awk '{print $1}')
-
-    # if [ $wlp == "wlp6s0:" ]; then
-    #     echo 📶
-    # else
-    #     echo 
-    # fi
-    # nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -c5- 
-    [ "$(cat /sys/class/net/w*/operstate)" = 'down' ] && wifiicon="📡" ||
-	wifiicon=$(grep "^\s*w" /proc/net/wireless | awk '{ print "", int($3 * 100 / 70) "%" }')
-
-    printf "%s %s\n" "$wifiicon" "$(sed "s/down//;s/unknown/teth/;s/up//" /sys/class/net/e*/operstate)"
+    if [ "$(cat /sys/class/net/w*/operstate)" = 'up' ]; then
+        echo "$(grep "^\s*w" /proc/net/wireless | awk '{ print "", int($3 * 100 / 70) "%" }')"
+    elif [ "$(cat /sys/class/net/e*/operstate)" != 'down' ]; then
+        echo "$(sed "s/down//;s/unknown/teth/;s/up//" /sys/class/net/e*/operstate)"
+    else
+        echo "📡" 
+    fi
 }
 
 print_mem() {
@@ -46,7 +41,7 @@ print_date() {
 }
 
 while true; do
-    xsetroot -name " $(print_xkb) $(print_wifi) $(print_mem) $(print_batstatus) $(print_bat) $(print_date)"
+    xsetroot -name " $(print_xkb) $(print_mem) $(print_wifi) $(print_batstatus) $(print_bat) $(print_date)"
     # echo $(print_wifi) $(print_batstatus) $(print_bat) $(print_date) sleep 5   # 1m for time every minute
     sleep 1
 done &
