@@ -3,11 +3,12 @@
 # autostart
 sxhkd &
 $HOME/.config/polybar/launch.sh &
-setxkbmap us,in -variant ,hin-kagapa -option grp:alt_shift_toggle
-nitrogen --restore &
+setxkbmap us,in -variant ,hin-kagapa -option grp:alt_caps_toggle
+# nitrogen --restore &
 xss-lock -- blurlock.sh -d &
 compton &
-xautolock -time 10 -locker blurlock.sh -corners +00- &
+xss-lock -- blurlock.sh -d &
+feh --bg-scale "$(cat ~/.local/mybg)" &
 blueman-applet &
 nm-applet &
 
@@ -27,7 +28,7 @@ bspc rule -a Gcolor3 state=floating
 bspc rule -a Brave-browser desktop='^2'
 bspc rule -a Firefox desktop='^2'
 bspc rule -a vlc desktop='^7'
-# bspc rule -a Chromium desktop='^2'
+bspc rule -a Chromium desktop='^2'
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off

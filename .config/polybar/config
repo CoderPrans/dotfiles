@@ -1,7 +1,7 @@
 [colors]
 background = #df000000
 background-alt = #111
-foreground = #ccc
+foreground = #bbb
 foreground-alt = #464646
 primary = #ffb52a
 secondary = #e60053
@@ -24,7 +24,7 @@ font-2 = monospace:size=10
 
 modules-left = bspwm title
 modules-center = date
-modules-right = xkeyboard network battery
+modules-right = xkeyboard net ram battery
 
 [module/date]
 type = internal/date
@@ -98,18 +98,26 @@ blacklist-0 = num lock
 blacklist-1 = caps lock
 
 format-foreground = ${colors.foreground-alt}
-;format-padding = 1
+format-padding = 1
 
-[module/network]
+[module/net]
 type = custom/script
 
 exec = ~/.config/polybar/network.sh
 interval = 3
-
 ;label-font = 3
 format = <label>
 format-foreground = ${colors.foreground} 
 label = %output%
-label-maxlen = 33
-format-padding = 3
+;label-maxlen = 33
+format-padding = 1
 
+[module/ram]
+type = custom/script
+exec = ~/.config/polybar/memory.sh
+interval = 3
+format = <label>
+format-foreground = ${colors.foreground} 
+label = %output%
+;label-maxlen = 33
+format-padding = 3
