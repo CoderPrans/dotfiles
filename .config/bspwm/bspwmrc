@@ -5,13 +5,12 @@ sxhkd &
 $HOME/.config/polybar/launch.sh &
 setxkbmap us,in -variant ,hin-kagapa -option grp:alt_caps_toggle
 # nitrogen --restore &
-plank
-xss-lock -- blurlock.sh -d &
-compton &
 xss-lock -- blurlock.sh -d &
 feh --bg-scale "$(cat ~/.local/mybg)" &
 blueman-applet &
 nm-applet &
+compton &
+plank &
 
 bspc monitor -d '' '' '' '' '' '' '' '' '' '' 
 
