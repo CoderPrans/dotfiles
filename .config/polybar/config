@@ -1,8 +1,8 @@
 [colors]
-background = #df000000
+background = #cc000000
 background-alt = #111
 foreground = #bbb
-foreground-alt = #464646
+foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -19,12 +19,12 @@ border-size = 0
 border-color = #00000000
 
 font-0 = Cantarell:style=Bold:size=11;2
-font-1 = SauceCodePro Nerd Font:style=Regular:pixelsize=11;2
+font-1 = Hack Nerd Font:style=Regular:pixelsize=11;2
 font-2 = monospace:size=10
 
 modules-left = bspwm title
 modules-center = date
-modules-right = xkeyboard net ram battery
+modules-right = spotify xkeyboard net ram battery
 
 [module/date]
 type = internal/date
@@ -89,9 +89,6 @@ format-charging-prefix-foreground = ${colors.primary}
 format-discharging-prefix = " "
 format-discharging-prefix-foreground = ${colors.foreground-alt}
 
-format-full-prefix = ""
-format-full-prefix-foreground = ${colors.foreground-alt}
-
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
@@ -102,11 +99,11 @@ format-padding = 1
 
 [module/net]
 type = custom/script
-
-exec = ~/.config/polybar/network.sh
 interval = 3
-;label-font = 3
+exec = ~/.config/polybar/network.sh
+format-prefix = "   "
 format = <label>
+format-prefix-foreground = ${colors.foreground-alt}
 format-foreground = ${colors.foreground} 
 label = %output%
 ;label-maxlen = 33
@@ -114,10 +111,20 @@ format-padding = 1
 
 [module/ram]
 type = custom/script
-exec = ~/.config/polybar/memory.sh
 interval = 3
+format-prefix = "   "
 format = <label>
+format-prefix-foreground = ${colors.foreground-alt}
 format-foreground = ${colors.foreground} 
-label = %output%
-;label-maxlen = 33
+exec = ~/.config/polybar/memory.sh
 format-padding = 3
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = "♪  "
+format = <label>
+format-foreground = ${colors.foreground-alt}
+exec = python ~/.config/polybar/spotify_status.py -f '( {song} )'
+format-padding = 2
+
