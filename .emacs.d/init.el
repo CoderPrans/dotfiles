@@ -2,9 +2,9 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-;(fringe-mode -1) 
-;(global-display-line-numbers-mode)
-;(setq display-line-numbers-type t)
+(fringe-mode -1) 
+(global-display-line-numbers-mode)
+(setq display-line-numbers-type t)
 (setq backup-directory-alist `(("." . ".emacs")))
 (ido-mode 1)
 (show-paren-mode 1)
@@ -97,8 +97,10 @@
  '(ansi-color-names-vector
    ["#000000" "#8b0000" "#00ff00" "#ffa500" "#7b68ee" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(custom-safe-themes
-   '("830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" default))
- '(fci-rule-color "#383838"))
+   '("2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "890a1a44aff08a726439b03c69ff210fe929f0eff846ccb85f78ee0e27c7b2ea" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "f2c35f8562f6a1e5b3f4c543d5ff8f24100fae1da29aeb1864bbc17758f52b70" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" default))
+ '(fci-rule-color "#383838")
+ '(package-selected-packages
+   '(ample-theme zenburn-theme use-package solarized-theme shrink-path org-bullets memoize leuven-theme helm exwm evil cyberpunk-theme color-theme-sanityinc-solarized autothemer)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -8,6 +8,7 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/mybar]
+monitor = eDP-1
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -42,15 +43,16 @@ label = %date%  %time%
 
 [module/bspwm]
 type = internal/bspwm
+pin-workspaces = true
 
-label-focused = %index%%name%
+label-focused = %name%
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = %name%
 label-occupied-foreground = ${colors.foreground-alt}
 label-occupied-padding = 2
 
-label-urgent = %index%!
+label-urgent = %name%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
@@ -128,3 +130,22 @@ format-foreground = ${colors.foreground-alt}
 exec = python ~/.config/polybar/spotify_status.py -f '( {song} )'
 format-padding = 2
 
+[bar/external]
+monitor = HDMI-1
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+height = 21
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+font-0 = Cantarell:style=Bold:size=11;2
+font-1 = Hack Nerd Font:style=Regular:pixelsize=11;2
+font-2 = monospace:size=10
+
+modules-left = bspwm
+modules-center = date
+modules-right = spotify xkeyboard net
