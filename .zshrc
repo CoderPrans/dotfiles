@@ -1,14 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # source ~/Documents/dotfiles/zshrc
 export ZSH=/home/pranav/.oh-my-zsh
 
-ZSH_THEME="powerlevel10k/powerlevel10k" # avit garyblessington kolo
+ZSH_THEME="minimal" # avit garyblessington kolo
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
@@ -55,11 +48,6 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-# export ARCHFLAGS="-arch x86_64"
-# ssh
-# qxport SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias lsl="ls -alh"
 alias tree="tree -I 'node_modules|bin|docs|lib|build|target'"
@@ -68,8 +56,8 @@ alias tree="tree -I 'node_modules|bin|docs|lib|build|target'"
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # vi mode
-bindkey '^[' vi-cmd-mode
-export KEYTIMEOUT=1
+# bindkey '^[' vi-cmd-mode
+# export KEYTIMEOUT=1
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 fe() {
@@ -98,6 +86,3 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -12,10 +12,6 @@
 (global-auto-revert-mode 1)
 (global-hl-line-mode 1)
 
-; enable transient mark mode
-;(transient-mark-mode 1)
-;; org mode configuration
-;; enable org mode
 (require 'org)
 
 ; require and initialize packages
@@ -36,26 +32,43 @@
 
 ;(eval-when-compile
 ;  (require 'use-package))
-
 ;evil mode
-(use-package evil
-  :ensure t
-  :config
-  (evil-mode 1))
+;(use-package evil
+;  :ensure t
+;  :config
+;  (evil-mode 1))
+;(define-key evil-ex-map "e" 'find-file)
 
-(define-key evil-ex-map "e" 'find-file)
+;; CIDER
+(use-package cider
+  :ensure t)
 
+;; COMPANY
+(use-package company
+  :ensure t)
+
+;; PAREDIT
+(use-package paredit
+  :ensure t)
+
+;; MAGIT
+(use-package magit
+  :ensure t)
+
+;; ORG-BULLETS
 (use-package org-bullets
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-(use-package helm
-  :ensure t)
-
+;; CYBERPUNK-THEME
 (use-package cyberpunk-theme
   :ensure t)
 
 (load-theme 'cyberpunk t)
+
+;; HELM
+(use-package helm
+  :ensure t)
 
 (use-package helm
   :init
@@ -66,10 +79,10 @@
     (helm-mode 1) ;; prompts become helm-enabled
     (helm-autoresize-mode 1) ;;resizes
     (global-set-key (kbd "C-x b") 'helm-buffers-list)
-    (define-key evil-ex-map "l" 'helm-buffers-list)
+;    (define-key evil-ex-map "l" 'helm-buffers-list)
     (global-set-key (kbd "C-x r b") 'helm-bookmarks)
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
-    (define-key evil-ex-map "e" 'helm-find-files)
+;    (define-key evil-ex-map "e" 'helm-find-files)
     (global-set-key (kbd "M-c") 'helm-calcul-expression)
     (global-set-key (kbd "C-s") 'helm-occur)
     (global-set-key (kbd "C-h a") 'helm-apropos)
@@ -77,13 +90,7 @@
     (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   :ensure t)
 
-
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-
-;(use-package doom-modeline
-;  :ensure t
-;  :init (doom-modeline-mode 1))
-
 
 ;(require 'exwm)
 ;(require 'exwm-config)
@@ -97,10 +104,10 @@
  '(ansi-color-names-vector
    ["#000000" "#8b0000" "#00ff00" "#ffa500" "#7b68ee" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(custom-safe-themes
-   '("2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "890a1a44aff08a726439b03c69ff210fe929f0eff846ccb85f78ee0e27c7b2ea" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "f2c35f8562f6a1e5b3f4c543d5ff8f24100fae1da29aeb1864bbc17758f52b70" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" default))
+   '("378d52c38b53af751b50c0eba301718a479d7feea5f5ba912d66d7fe9ed64c8f" "c9ddf33b383e74dac7690255dd2c3dfa1961a8e8a1d20e401c6572febef61045" "bf798e9e8ff00d4bf2512597f36e5a135ce48e477ce88a0764cfb5d8104e8163" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "890a1a44aff08a726439b03c69ff210fe929f0eff846ccb85f78ee0e27c7b2ea" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "f2c35f8562f6a1e5b3f4c543d5ff8f24100fae1da29aeb1864bbc17758f52b70" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" default))
  '(fci-rule-color "#383838")
  '(package-selected-packages
-   '(ample-theme zenburn-theme use-package solarized-theme shrink-path org-bullets memoize leuven-theme helm exwm evil cyberpunk-theme color-theme-sanityinc-solarized autothemer)))
+   '(magit paredit company cider ample-theme zenburn-theme use-package solarized-theme shrink-path org-bullets memoize leuven-theme helm exwm evil cyberpunk-theme color-theme-sanityinc-solarized autothemer)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
