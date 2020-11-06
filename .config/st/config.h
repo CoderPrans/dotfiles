@@ -126,7 +126,7 @@ static const char *colorname[] = {
     /* [6] = "#689d6a", /1* cyan    *1/ */
     /* [7] = "#a89984", /1* white   *1/ */
     
-    /* /1* 8 bright colors *1/ */
+    /* 8 bright colors */
     /* [8]  = "#928374", /1* black   *1/ */
     /* [9]  = "#fb4934", /1* red     *1/ */
     /* [10] = "#b8bb26", /1* green   *1/ */
@@ -136,25 +136,52 @@ static const char *colorname[] = {
     /* [14] = "#8ec07c", /1* cyan    *1/ */
     /* [15] = "#ebdbb2", /1* white   *1/ */
 
-    /* ir_black / 8 normal colors */
-   "#0F0F0F", 
-   "#FF6C60", 
-   "#77B743", 
-   "#3E3E2D", 
-   "#427F9E", 
-   "#FF73FD", 
-   "#C6C5FE", 
-   "#EEEEEE", 
+    /* /1* ir_black / 8 normal colors *1/ */
+   /* "#0F0F0F", */ 
+   /* "#FF6C60", */ 
+   /* "#77B743", */ 
+   /* "#3E3E2D", */ 
+   /* "#427F9E", */ 
+   /* "#FF73FD", */ 
+   /* "#C6C5FE", */ 
+   /* "#EEEEEE", */ 
     
-    /* 8 bright colors */
-   "#7C7C7C", 
-   "#FFB6B0", 
-   "#CEFFAC", 
-   "#FFFFCB", 
-   "#B5DCFE", 
-   "#FF9CFE", 
-   "#DFDFFE", 
-   "#FFFFFF", 
+    /* /1* 8 bright colors *1/ */
+   /* "#7C7C7C", */ 
+   /* "#FFB6B0", */ 
+   /* "#CEFFAC", */ 
+   /* "#FFFFCB", */ 
+   /* "#B5DCFE", */ 
+   /* "#FF9CFE", */ 
+   /* "#DFDFFE", */ 
+   /* "#FFFFFF", */ 
+
+   /* 8 normal colors */
+   "black",
+   "red3",
+   "green3",
+   "yellow3",
+   "blue2",
+   "magenta3",
+   "cyan3",
+   "gray90",
+  
+   /* 8 bright colors */
+  "gray50",
+  "red",
+  "green",
+  "yellow",
+  "#5c5cff",
+  "magenta",
+  "cyan",
+  "white",
+  
+       [255] = 0,
+  
+       /* more colors can be added after 255 to use with DefaultXX */
+       "#cccccc",
+   "#555555",
+
 
 };
 
@@ -163,14 +190,14 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-/* unsigned int defaultfg = 257; */
-/* unsigned int defaultbg = 256; */
-/* static unsigned int defaultcs = 257; */
-/* static unsigned int defaultrcs = 256; */
-unsigned int defaultfg = 15;
+unsigned int defaultfg = 7;
 unsigned int defaultbg = 0;
-static unsigned int defaultcs = 15;
+static unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
+/* unsigned int defaultfg = 15; */
+/* unsigned int defaultbg = 0; */
+/* static unsigned int defaultcs = 15; */
+/* static unsigned int defaultrcs = 257; */
 
 /*
  * Default shape of cursor

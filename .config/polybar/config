@@ -11,6 +11,10 @@ alert = #bd2c40
 monitor = eDP-1
 background = ${colors.background}
 foreground = ${colors.foreground}
+padding-right = 2
+
+tray-position = right
+tray-padding = 3
 
 height = 21
 line-size = 3
@@ -25,7 +29,7 @@ font-2 = monospace:size=10
 
 modules-left = bspwm title
 modules-center = date
-modules-right = spotify xkeyboard net ram battery
+modules-right = spotify xkeyboard ram battery
 
 [module/date]
 type = internal/date
@@ -97,7 +101,7 @@ blacklist-0 = num lock
 blacklist-1 = caps lock
 
 format-foreground = ${colors.foreground-alt}
-format-padding = 1
+;format-padding = 1
 
 [module/net]
 type = custom/script
