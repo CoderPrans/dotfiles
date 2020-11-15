@@ -12,9 +12,10 @@ monitor = eDP-1
 background = ${colors.background}
 foreground = ${colors.foreground}
 padding-right = 2
+bottom = true
 
 tray-position = right
-tray-padding = 3
+tray-padding = 1
 
 height = 21
 line-size = 3
@@ -27,23 +28,34 @@ font-0 = Cantarell:style=Bold:size=11;2
 font-1 = Hack Nerd Font:style=Regular:pixelsize=11;2
 font-2 = monospace:size=10
 
-modules-left = bspwm title
+modules-left = menu bspwm title  
 modules-center = date
 modules-right = spotify xkeyboard ram battery
 
+[module/menu]
+type = custom/text
+
+content = 
+content-padding = 3
+
+click-left = rofi -modi drun -show drun -show-icons 
 [module/date]
 type = internal/date
 interval = 5
 
 date = %a %d 
-date-alt = " %Y-%m-%d"
+;date-alt = " %Y-%m-%d"
+
+;time = %H:%M
+;time-alt = %H:%M:%S
 
 time = %H:%M
-time-alt = %H:%M:%S
 
-format-prefix-foreground = ${colors.foreground-alt}
+format = <label>
+format-padding = 2
 
-label = %date%  %time%
+;label = %date%  %time%
+label = %date%, %time%
 
 [module/bspwm]
 type = internal/bspwm

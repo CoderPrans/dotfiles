@@ -33,9 +33,7 @@
  (require 'use-package))
 
 (use-package evil
- :ensure t
- :config
- (evil-mode 1))
+ :ensure t)
 
 (use-package cider
   :ensure t)
@@ -46,12 +44,14 @@
 (use-package cyberpunk-theme
  :ensure t)
 (load-theme 'cyberpunk t)
+(add-to-list 'default-frame-alist '(font . "Ubuntu Mono"))
 
 (winner-mode 1)
 (global-set-key (kbd "C-c C-h") 'winner-undo)
 (global-set-key (kbd "C-c C-l") 'winner-redo)
 
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
