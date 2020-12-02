@@ -7,7 +7,8 @@ setxkbmap 'us,in' -variant ',hin-kagapa' -option 'grp:alt_space_toggle,ctrl:noca
 # nitrogen --restore &
 xss-lock -- blurlock.sh -d &
 feh --bg-scale "$(cat ~/.local/mybg)" &
-blueberry-tray &
+blueman-applet &
+# blueberry-tray &
 nm-applet &
 compton &
 # plank &

@@ -41,6 +41,17 @@
 (use-package paredit
   :ensure t)
 
+(use-package ag
+  :ensure t)
+
+(use-package typescript-mode
+  :ensure t)
+
+(use-package projectile
+  :ensure t)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 (use-package cyberpunk-theme
  :ensure t)
 (load-theme 'cyberpunk t)
@@ -57,7 +68,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(cyberpunk-theme paredit cider evil use-package)))
+ '(package-selected-packages
+   '(typescript-mode cyberpunk-theme projectile ag paredit cider evil use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

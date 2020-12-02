@@ -114,7 +114,7 @@ set statusline+=\
 
 " theming vim
 set background=dark
-colorscheme grb256 "nord jellybeans tender minimalist monokain gruvbox ir_black
+colorscheme jellybeans "grb256 nord  tender minimalist monokain gruvbox ir_black
 
 " clear cursorline highlight
 hi clear CursorLineNR
