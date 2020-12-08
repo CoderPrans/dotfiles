@@ -12,7 +12,7 @@
 (show-paren-mode 1)
 (column-number-mode 1)
 ;(global-auto-revert-mode 1)
-(global-hl-line-mode 1)
+;(global-hl-line-mode 1)
 
 (require 'package)
 (package-initialize)
@@ -34,6 +34,7 @@
 
 (use-package evil
  :ensure t)
+(evil-mode 1)
 
 (use-package cider
   :ensure t)
@@ -50,12 +51,12 @@
 (use-package projectile
   :ensure t)
 (projectile-mode +1)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-,") 'projectile-command-map)
 
 (use-package cyberpunk-theme
  :ensure t)
 (load-theme 'cyberpunk t)
-(add-to-list 'default-frame-alist '(font . "Ubuntu Mono"))
+(add-to-list 'default-frame-alist '(font . "Hack Nerd Font-10"))
 
 (winner-mode 1)
 (global-set-key (kbd "C-c C-h") 'winner-undo)
@@ -68,8 +69,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" default))
+ '(fci-rule-color "#383838")
  '(package-selected-packages
-   '(typescript-mode cyberpunk-theme projectile ag paredit cider evil use-package)))
+   '(smart-mode-line typescript-mode cyberpunk-theme projectile ag paredit cider evil use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
