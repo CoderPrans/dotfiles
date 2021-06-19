@@ -1,68 +1,94 @@
-;essential settings  
+
+;; Essentials
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-;(fringe-mode -1)
 (global-display-line-numbers-mode)
-(setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
-;(setq make-backup-files nil)
-(setq auto-save-default nil)
-(setq create-lockfiles nil)
-(ido-mode 1)
 (show-paren-mode 1)
 (column-number-mode 1)
-;(global-auto-revert-mode 1)
-;(global-hl-line-mode 1)
+(global-hl-line-mode 1)
+(setq ring-bell-function 'ignore)
+
+;; IDO
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+;; Customized backup
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
+(setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
 
 (require 'package)
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/load/")
+;; Add package repos
 (add-to-list 'package-archives
-  '("melpa" . "https://melpa.org/packages/") t)
+	     '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives
 	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'load-path "~/.emacs.d/load/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/load")
 
-(add-to-list 'custom-theme-load-path "/home/pranav/.emacs.d/load")
+;; Install packages
+(defvar my-packages '(ag
+		      evil
+		      cider
+		      magit
+		      paredit
+		      prettier
+		      web-mode
+		      flycheck
+		      projectile
+		      python-mode
+		      cyberpunk-theme
+		      typescript-mode
+		      exec-path-from-shell
+		      ))
 
-(when (not (package-installed-p 'use-package))
-  (package-refresh-contents)
-  (package-install 'use-package))
+(dolist (p my-packages)
+  (unless (package-installed-p p)
+    (package-refresh-contents)
+    (package-install p))
+  (add-to-list 'package-selected-packages p))
 
-(eval-when-compile
- (require 'use-package))
+;; ;; shell path
+;; (exec-path-from-shell-initialize)
 
-(use-package evil
- :ensure t)
+;; Js/Tsx modes
+(add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . javascript-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
+;; Web Mode
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
+;; Evil
 (evil-mode 1)
+(setq evil-move-beyond-eol t)
 
-(use-package cider
-  :ensure t)
-
-(use-package paredit
-  :ensure t)
-
-(use-package ag
-  :ensure t)
-
-(use-package typescript-mode
-  :ensure t)
-
-(use-package projectile
-  :ensure t)
+;; Projectile
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "C-,") 'projectile-command-map)
 
-(use-package cyberpunk-theme
- :ensure t)
-(load-theme 'cyberpunk t)
-(add-to-list 'default-frame-alist '(font . "Hack Nerd Font-10"))
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+; workaround for slow eslint --print-config
+(with-eval-after-load 'flycheck
+  (advice-add 'flycheck-eslint-config-exists-p :override (lambda() t)))
 
+;; Prettier
+(add-hook 'after-init-hook #'global-prettier-mode)
+
+;; Appearance
+(load-theme 'cyberpunk t)
+(add-to-list 'default-frame-alist '(font . "Hack-10"))
+
+;; Winner mode
 (winner-mode 1)
 (global-set-key (kbd "C-c C-h") 'winner-undo)
 (global-set-key (kbd "C-c C-l") 'winner-redo)
-
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -73,7 +99,7 @@
    '("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" default))
  '(fci-rule-color "#383838")
  '(package-selected-packages
-   '(smart-mode-line typescript-mode cyberpunk-theme projectile ag paredit cider evil use-package)))
+   '(nov flycheck org-present epresent python-mode web-mode magit cyberpunk-theme projectile ag paredit cider evil use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
