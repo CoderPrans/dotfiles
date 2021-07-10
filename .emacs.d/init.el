@@ -25,13 +25,13 @@
 (ido-mode 1)
 
 
-					; Customized backup
+					; Backup
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
 
 
-					; Package repos
+					; Package Repos
 (require 'package)
 (package-initialize)
 
@@ -47,27 +47,26 @@
 
 
 					; Packages
-(defvar my-packages
-  '(ag
-    evil
-    cider
-    magit
-    winum
-    paredit
-    prettier
-    flycheck
-    projectile
-    smartparens
-    cyberpunk-theme
-    typescript-mode
-    exec-path-from-shell
-    ))
+(let ((my-packages '(ag
+		     evil
+		     cider
+		     magit
+		     winum
+		     paredit
+		     prettier
+		     flycheck
+		     projectile
+		     smartparens
+		     cyberpunk-theme
+		     typescript-mode
+		     exec-path-from-shell
+		     )))
 
-(dolist (p my-packages)
-  (unless (package-installed-p p)
-    (package-refresh-contents)
-    (package-install p))
-  (add-to-list 'package-selected-packages p))
+  (dolist (p my-packages)
+    (unless (package-installed-p p)
+      (package-refresh-contents)
+      (package-install p))
+    (add-to-list 'package-selected-packages p)))
 
 ;; shell path
 ;; (exec-path-from-shell-initialize)
@@ -120,6 +119,8 @@
 
 					; Appearance
 (load-theme 'cyberpunk t)
+;; (load-theme 'wombat t t)
+;; (enable-theme 'wombat)
 ;; (add-to-list 'default-frame-alist
 ;; 	     '(font . "Hack-10"))
 
@@ -145,6 +146,13 @@
   (interactive)
   (find-file (expand-file-name "init.el" user-emacs-directory)))
 
+(defun ido-M-x ()
+  (interactive)
+  (call-interactively
+   (intern (ido-completing-read
+	    "M-x "
+	    (all-completions "" obarray 'commandp)))))
+
 (global-set-key (kbd "C-c i") 'open-init-el)
 (global-set-key (kbd "C-c k") 'kill-this-buffer)
-
+(global-set-key "\M-x" 'ido-M-x)
