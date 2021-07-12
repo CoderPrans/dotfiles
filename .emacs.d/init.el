@@ -5,11 +5,10 @@
 (show-paren-mode 1)
 (scroll-bar-mode -1)
 (column-number-mode 1)
-;; (global-hl-line-mode 1)
-;; (global-display-line-numbers-mode)
 (set-default
  'indicate-empty-lines t)
-
+;; (global-hl-line-mode 1)
+;; (global-display-line-numbers-mode)
 (setq initial-frame-alist
       '((top . 0) (left . 0)
 	(width . 85) (height . 32)))
@@ -41,7 +40,6 @@
 (add-to-list 'package-archives
 	     '("melpa-stable" .
 	       "https://stable.melpa.org/packages/") t)
-
 (add-to-list 'load-path "~/.emacs.d/load/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/load")
 
@@ -57,26 +55,28 @@
 		     flycheck
 		     projectile
 		     smartparens
+		     geiser-chicken
 		     cyberpunk-theme
 		     typescript-mode
 		     exec-path-from-shell
 		     )))
-
   (dolist (p my-packages)
     (unless (package-installed-p p)
       (package-refresh-contents)
       (package-install p))
     (add-to-list 'package-selected-packages p)))
 
-;; shell path
 ;; (exec-path-from-shell-initialize)
 
 
-					; Syntax
-(add-to-list 'auto-mode-alist
-	     '("\\.jsx\\'" . javascript-mode))
-(add-to-list 'auto-mode-alist
-	     '("\\.tsx\\'" . typescript-mode))
+					; Org
+(defun org--scheme ()
+  "Load scheme for org-babel."
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   (add-to-list
+    'org-babel-load-languages '(scheme . t))))
+(add-hook 'org-mode-hook 'org--scheme)
 
 
 					; Evil
@@ -86,7 +86,7 @@
       evil-want-fine-undo t
       evil-mode-line-format 'before
       evil-normal-state-cursor '(box "orange")
-      evil-emacs-state-cursor  '(box "purple"))
+      evil-emacs-state-cursor '(box "purple"))
 
 
 					; SmartParens
@@ -112,6 +112,13 @@
 	      :override (lambda() t)))
 
 
+					; Syntax
+(add-to-list 'auto-mode-alist
+	     '("\\.jsx\\'" . javascript-mode))
+(add-to-list 'auto-mode-alist
+	     '("\\.tsx\\'" . typescript-mode))
+
+
 					; Prettier
 ;; (add-hook 'after-init-hook
 ;; 	  #'global-prettier-mode)
@@ -127,12 +134,12 @@
 
 					; Winum mode
 (winum-mode 1)
-(global-set-key (kbd "C-c 1") 'winum-select-window-1)
-(global-set-key (kbd "C-c 2") 'winum-select-window-2)
-(global-set-key (kbd "C-c 3") 'winum-select-window-3)
-(global-set-key (kbd "C-c 4") 'winum-select-window-4)
-(global-set-key (kbd "C-c 5") 'winum-select-window-5)
-(global-set-key (kbd "C-c 6") 'winum-select-window-6)
+(global-set-key (kbd "M-1") 'winum-select-window-1)
+(global-set-key (kbd "M-2") 'winum-select-window-2)
+(global-set-key (kbd "M-3") 'winum-select-window-3)
+(global-set-key (kbd "M-4") 'winum-select-window-4)
+(global-set-key (kbd "M-5") 'winum-select-window-5)
+(global-set-key (kbd "M-6") 'winum-select-window-6)
 
 
 					; Winner mode
@@ -143,10 +150,13 @@
 
 					; More bindings
 (defun open-init-el ()
+  "Open init file."
   (interactive)
-  (find-file (expand-file-name "init.el" user-emacs-directory)))
+  (find-file
+   (expand-file-name "init.el" user-emacs-directory)))
 
 (defun ido-M-x ()
+  "Use ido for Meta x."
   (interactive)
   (call-interactively
    (intern (ido-completing-read
@@ -155,4 +165,5 @@
 
 (global-set-key (kbd "C-c i") 'open-init-el)
 (global-set-key (kbd "C-c k") 'kill-this-buffer)
+(global-set-key (kbd "C-M-/") 'indent-region)
 (global-set-key "\M-x" 'ido-M-x)
