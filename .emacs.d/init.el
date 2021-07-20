@@ -19,6 +19,19 @@
 
 
 					; IDO
+
+(defun ido-vertical ()
+  "Vertical IDO options."
+  (setq ido-decorations
+	'("\n-> " "" "\n   " "\n   ..." "[" "]"
+	  " [No match]" " [Matched]" " [Not readable]"
+	  " [Too big]" " [Confirm]"))
+  (define-key
+    ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key
+    ido-completion-map (kbd "C-p") 'ido-prev-match))
+
+(add-hook 'ido-setup-hook 'ido-vertical)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
@@ -58,15 +71,12 @@
 		     geiser-chicken
 		     cyberpunk-theme
 		     typescript-mode
-		     exec-path-from-shell
 		     )))
   (dolist (p my-packages)
     (unless (package-installed-p p)
       (package-refresh-contents)
       (package-install p))
     (add-to-list 'package-selected-packages p)))
-
-;; (exec-path-from-shell-initialize)
 
 
 					; Org
@@ -76,6 +86,7 @@
    'org-babel-load-languages
    (add-to-list
     'org-babel-load-languages '(scheme . t))))
+
 (add-hook 'org-mode-hook 'org--scheme)
 
 
@@ -163,7 +174,9 @@
 	    "M-x "
 	    (all-completions "" obarray 'commandp)))))
 
-(global-set-key (kbd "C-c i") 'open-init-el)
-(global-set-key (kbd "C-c k") 'kill-this-buffer)
-(global-set-key (kbd "C-M-/") 'indent-region)
 (global-set-key "\M-x" 'ido-M-x)
+(global-set-key (kbd "C-c i") 'open-init-el)
+(global-set-key (kbd "C-M-/") 'indent-region)
+(global-set-key (kbd "C-c k") 'kill-this-buffer)
+(global-set-key (kbd "<C-tab>") 'next-buffer)
+(global-set-key (kbd "<C-iso-lefttab>") 'previous-buffer)
