@@ -18,29 +18,11 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 
-					; IDO
-
-(defun ido-vertical ()
-  "Vertical IDO options."
-  (setq ido-decorations
-	'("\n-> " "" "\n   " "\n   ..." "[" "]"
-	  " [No match]" " [Matched]" " [Not readable]"
-	  " [Too big]" " [Confirm]"))
-  (define-key
-    ido-completion-map (kbd "C-n") 'ido-next-match)
-  (define-key
-    ido-completion-map (kbd "C-p") 'ido-prev-match))
-
-(add-hook 'ido-setup-hook 'ido-vertical)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-
-
 					; Backup
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
-(setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
+(setq backup-directory-alist
+      `(("." . "~/.emacs.d/backup")))
 
 
 					; Package Repos
@@ -65,11 +47,11 @@
 		     winum
 		     paredit
 		     prettier
+		     js2-mode
 		     flycheck
 		     projectile
 		     smartparens
 		     geiser-chicken
-		     cyberpunk-theme
 		     typescript-mode
 		     )))
   (dolist (p my-packages)
@@ -77,6 +59,26 @@
       (package-refresh-contents)
       (package-install p))
     (add-to-list 'package-selected-packages p)))
+
+
+					; IDO
+(ido-mode 1)
+(setq ido-everywhere t)
+(setq ido-enable-flex-matching t)
+
+(defun ido-vertical ()
+  "Vertical IDO options."
+  (setq ido-decorations
+	'("\n-> " "" "\n   " "\n   ..."
+	  "[" "]" " [No match]"
+	  " [Matched]" " [Not readable]"
+	  " [Too big]" " [Confirm]"))
+  (define-key
+    ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key
+    ido-completion-map (kbd "C-p") 'ido-prev-match))
+
+(add-hook 'ido-setup-hook 'ido-vertical)
 
 
 					; Org
@@ -124,11 +126,13 @@
 
 
 					; Syntax
-(add-to-list 'auto-mode-alist
-	     '("\\.jsx\\'" . javascript-mode))
-(add-to-list 'auto-mode-alist
-	     '("\\.tsx\\'" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'"    . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.pac\\'"   . js2-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'"   . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
+(add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
 
 					; Prettier
 ;; (add-hook 'after-init-hook
@@ -136,11 +140,21 @@
 
 
 					; Appearance
-(load-theme 'cyberpunk t)
-;; (load-theme 'wombat t t)
-;; (enable-theme 'wombat)
-;; (add-to-list 'default-frame-alist
-;; 	     '(font . "Hack-10"))
+(deftheme default-black
+  "Customized default theme.")
+(custom-theme-set-faces
+ 'default-black
+ '(default ((t (:background "Black" :foreground "White"))))
+ '(hl-line ((nil (:background "#222"))))
+ '(highlight ((nil (:background "#222"))))
+ '(region ((nil (:background "#463740"))))
+ '(ido-subdir ((nil (:foreground "Gray"))))
+ '(ido-only-match ((nil (:foreground "LimeGreen"))))
+ '(ido-first-match ((nil (:foreground "LimeGreen"))))
+ '(font-lock-comment-face ((nil (:foreground "#7a7a7a"))))
+ '(mode-line ((nil (:foreground "Black" :background "DarkGray")))))
+(enable-theme 'default-black)
+;; (load-theme 'cyberpunk t)
 
 
 					; Winum mode
