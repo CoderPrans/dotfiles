@@ -1,12 +1,14 @@
 #!/bin/sh
 
 #urxvtd &
+setxkbmap -option "ctrl:swapcaps"
 setxkbmap us,in -variant ,hin-kagapa -option grp:alt_caps_toggle
-compton &
+picom &
 nm-applet &
 blueman-applet &
 xss-lock -- blurlock.sh -d &
 feh --bg-scale "$(cat ~/.local/mybg)" &
+dunst &
 #nitrogen --restore &
 
 # Statusbar loop
