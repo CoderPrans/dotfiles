@@ -16,6 +16,10 @@
 (setq inhibit-startup-screen t)
 (setq tab-always-indent 'complete)
 (defalias 'yes-or-no-p 'y-or-n-p)
+;; set transparency
+(set-frame-parameter (selected-frame) 'alpha '(95 95))
+(add-to-list 'default-frame-alist '(alpha 95 95))
+
 
 
 					; Backup
@@ -47,11 +51,12 @@
 		     winum
 		     paredit
 		     prettier
-		     js2-mode
+		     rjsx-mode
 		     flycheck
 		     projectile
 		     smartparens
 		     geiser-chicken
+		     cyberpunk-theme
 		     typescript-mode
 		     )))
   (dolist (p my-packages)
@@ -117,22 +122,21 @@
 
 
 					; Flycheck
-(add-hook 'after-init-hook
-	  #'global-flycheck-mode)
-;; workaround for slow eslint --print-config
-(with-eval-after-load 'flycheck
-  (advice-add 'flycheck-eslint-config-exists-p
-	      :override (lambda() t)))
+;; (add-hook 'after-init-hook
+;; 	  #'global-flycheck-mode)
+;; ;; workaround for slow eslint --print-config
+;; (with-eval-after-load 'flycheck
+;;   (advice-add 'flycheck-eslint-config-exists-p
+;; 	      :override (lambda() t)))
 
 
 					; Syntax
-(add-to-list 'auto-mode-alist '("\\.js\\'"    . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.pac\\'"   . js2-mode))
-(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'"   . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'"    . rjsx-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'"    . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
-(add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
+;;(add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
+
 
 					; Prettier
 ;; (add-hook 'after-init-hook
@@ -140,21 +144,23 @@
 
 
 					; Appearance
-(deftheme default-black
-  "Customized default theme.")
-(custom-theme-set-faces
- 'default-black
- '(default ((t (:background "Black" :foreground "White"))))
- '(hl-line ((nil (:background "#222"))))
- '(highlight ((nil (:background "#222"))))
- '(region ((nil (:background "#463740"))))
- '(ido-subdir ((nil (:foreground "Gray"))))
- '(ido-only-match ((nil (:foreground "LimeGreen"))))
- '(ido-first-match ((nil (:foreground "LimeGreen"))))
- '(font-lock-comment-face ((nil (:foreground "#7a7a7a"))))
- '(mode-line ((nil (:foreground "Black" :background "DarkGray")))))
-(enable-theme 'default-black)
-;; (load-theme 'cyberpunk t)
+;; (deftheme default-black
+;;   "Customized default theme.")
+;; (custom-theme-set-faces
+;;  'default-black
+;;  '(default ((t (:background "Black" :foreground "White"))))
+;;  '(hl-line ((nil (:background "#222"))))
+;;  '(highlight ((nil (:background "#222"))))
+;;  '(region ((nil (:background "#463740"))))
+;;  '(ido-subdir ((nil (:foreground "Gray"))))
+;;  '(ido-only-match ((nil (:foreground "LimeGreen"))))
+;;  '(ido-first-match ((nil (:foreground "LimeGreen"))))
+;;  '(font-lock-comment-face ((nil (:foreground "#7a7a7a"))))
+;;  '(mode-line ((nil (:foreground "Black" :background "DarkGray")))))
+;; (enable-theme 'default-black)
+(add-to-list 'default-frame-alist
+             '(font . "CascadiaMono-10"))
+(load-theme 'cyberpunk t)
 
 
 					; Winum mode
@@ -194,3 +200,4 @@
 (global-set-key (kbd "C-c k") 'kill-this-buffer)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "<C-iso-lefttab>") 'previous-buffer)
+(global-set-key (kbd "C-c f") 'toggle-frame-fullscreen)
