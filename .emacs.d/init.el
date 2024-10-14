@@ -1,5 +1,10 @@
+;; Performance tweaks for modern machines
+(setq gc-cons-threshold 100000000) ; 100 mb
+(setq read-process-output-max (* 1024 1024)) ; 1mb
+
 
 					; Defaults
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (show-paren-mode 1)
@@ -7,26 +12,45 @@
 (column-number-mode 1)
 (set-default
  'indicate-empty-lines t)
+
 ;; (global-hl-line-mode 1)
 ;; (global-display-line-numbers-mode)
-(setq initial-frame-alist
-      '((top . 0) (left . 0)
-	(width . 105) (height . 32)))
+;; (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (setq ring-bell-function 'ignore)
 (setq inhibit-startup-screen t)
 (setq tab-always-indent 'complete)
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Add unique buffer names in the minibuffer where there are many
+;; identical files. This is super useful if you rely on folders for
+;; organization and have lots of files with the same name,
+;; e.g. foo/index.ts and bar/index.ts.
+(require 'uniquify)
+
+(electric-pair-mode t)
+(show-paren-mode 1)
+(savehist-mode t)
+(recentf-mode t)
+(global-auto-revert-mode t)
+
+(setq uniquify-buffer-name-style 'forward
+      window-resize-pixelwise t
+      frame-resize-pixelwise t
+      load-prefer-newer t
+      backup-by-copying t
+      auto-save-default nil
+      create-lockfiles nil
+      ;; Backups are placed into your Emacs directory, e.g. ~/.config/emacs/backups
+      backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
+      custom-file (expand-file-name "custom.el" user-emacs-directory))
+
 ;; set transparency
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90 90))
 
+;; Prefer spaces to tabs
+(setq-default indent-tabs-mode nil)
 
-
-					; Backup
-(setq auto-save-default nil)
-(setq create-lockfiles nil)
-(setq backup-directory-alist
-      `(("." . "~/.emacs.d/backup")))
 
 
 					; Package Repos
@@ -42,23 +66,23 @@
 (add-to-list 'load-path "~/.emacs.d/load/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/load")
 
-
 					; Packages
 (let ((my-packages '(ag
+		     fzf
 		     evil
 		     cider
 		     magit
 		     winum
+                     eglot
+                     helpful
+                     vertico
 		     paredit
-		     prettier
-		     rjsx-mode
-		     flycheck
-		     projectile
+                     marginalia
+                     ef-themes
 		     smartparens
-		     geiser-chicken
+                     evil-collection
 		     cyberpunk-theme
-		     typescript-mode
-		     exec-path-from-shell
+                     exec-path-from-shell
 		     )))
   (dolist (p my-packages)
     (unless (package-installed-p p)
@@ -67,24 +91,51 @@
     (add-to-list 'package-selected-packages p)))
 
 
-					; IDO
-(ido-mode 1)
-(setq ido-everywhere t)
-(setq ido-enable-flex-matching t)
+					; Exec Path From Shell
 
-(defun ido-vertical ()
-  "Vertical IDO options."
-  (setq ido-decorations
-	'("\n-> " "" "\n   " "\n   ..."
-	  "[" "]" " [No match]"
-	  " [Matched]" " [Not readable]"
-	  " [Too big]" " [Confirm]"))
-  (define-key
-    ido-completion-map (kbd "C-n") 'ido-next-match)
-  (define-key
-    ido-completion-map (kbd "C-p") 'ido-prev-match))
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
-(add-hook 'ido-setup-hook 'ido-vertical)
+
+                                        ; Vertico
+(vertico-mode)
+(setq vertico-cycle t)
+(setq read-buffer-completion-ignore-case t)
+(setq read-file-name-completion-ignore-case t)
+(setq completion-styles '(basic substring partial-completion flex))
+
+
+                                        ; Marginalia
+(marginalia-mode)
+
+
+                                        ; Corfu
+(global-corfu-mode)
+(setq corfu-auto t)
+(setq corfu-auto-delay 0)
+(setq corfu-auto-prefix 0)
+(setq completion-styles '(basic))
+
+
+                                        ; Eglot
+(require 'eglot)
+(define-key eglot-mode-map (kbd "C-c d") 'eglot-find-implementation)
+(define-key eglot-mode-map (kbd "C-c .") 'eglot-code-action-quickfix)
+
+(setq eglot-server-command '("clojure-lsp"))
+(setq eglot-auto-config t)
+(add-hook 'eglot-mode-hook 'eglot-ensure-server-running)
+(add-hook 'clojure-mode-hook 'eglot-ensure)
+
+
+                                        ; Helpful
+(require 'helpful)
+(define-key helpful-mode-map (kbd "C-h f") #'helpful-callable)
+(define-key helpful-mode-map (kbd "C-h v") #'helpful-variable)
+(define-key helpful-mode-map (kbd "C-h k") #'helpful-key)
+(define-key helpful-mode-map (kbd "C-c C-d") #'helpful-at-point)
+(define-key helpful-mode-map (kbd "C-h F") #'helpful-function)
+(define-key helpful-mode-map (kbd "C-h C") #'helpful-command)
 
 
 					; Org
@@ -103,10 +154,19 @@
 (setq evil-move-cursor-back nil
       evil-move-beyond-eol t
       evil-want-fine-undo t
+      evil-want-keybinding nil
+      evil-want-integration t
       evil-mode-line-format 'before
+      evil-highlight-closing-parent-at-point-states nil
       evil-normal-state-cursor '(box "orange")
       evil-emacs-state-cursor '(box "purple"))
 
+
+                                        ; Paredit
+(add-hook 'lisp-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'paredit-mode)
 
 					; SmartParens
 (require 'smartparens-config)
@@ -115,69 +175,18 @@
 (global-set-key (kbd "C-<") 'sp-forward-barf-sexp)
 
 
-					; Projectile
-(projectile-mode +1)
-(setq projectile-create-missing-test-files t)
-(define-key projectile-mode-map
-  (kbd "C-c p") 'projectile-command-map)
-
-					; Exec Path From Shell
-
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
-
-
-					; Flycheck
-(add-hook 'after-init-hook
-	  #'global-flycheck-mode)
-;; workaround for slow eslint --print-config
-(with-eval-after-load 'flycheck
-  (advice-add 'flycheck-eslint-config-exists-p
-	      :override (lambda() t)))
-
-(defun my/use-eslint-from-node-modules ()
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (eslint
-          (and root
-               (expand-file-name "node_modules/.bin/eslint"
-                                 root))))
-    (when (and eslint (file-executable-p eslint))
-      (setq-local flycheck-javascript-eslint-executable eslint))))
-
-(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
-
 					; Syntax
-(add-to-list 'auto-mode-alist '("\\.js\\'"    . rjsx-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'"    . rjsx-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
-
-;;(add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
-
-
-					; Prettier
-
-(add-hook 'rjsx-mode-hook #'prettier-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'"  . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'"  . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
 
 
 					; Appearance
-;; (deftheme default-black
-;;   "Customized default theme.")
-;; (custom-theme-set-faces
-;;  'default-black
-;;  '(default ((t (:background "Black" :foreground "White"))))
-;;  '(hl-line ((nil (:background "#222"))))
-;;  '(highlight ((nil (:background "#222"))))
-;;  '(region ((nil (:background "#463740"))))
-;;  '(ido-subdir ((nil (:foreground "Gray"))))
-;;  '(ido-only-match ((nil (:foreground "LimeGreen"))))
-;;  '(ido-first-match ((nil (:foreground "LimeGreen"))))
-;;  '(font-lock-comment-face ((nil (:foreground "#7a7a7a"))))
-;;  '(mode-line ((nil (:foreground "Black" :background "DarkGray")))))
-;; (enable-theme 'default-black)
-(add-to-list 'default-frame-alist
-             '(font . "Cascadia Mono PL-10"))
+(set-face-attribute 'default nil :font "Monaco" :height 120)
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Monaco-13"))
+
 (load-theme 'cyberpunk t)
 
 
@@ -193,8 +202,8 @@
 
 					; Winner mode
 (winner-mode 1)
-(global-set-key (kbd "C-c C-h") 'winner-undo)
-(global-set-key (kbd "C-c C-l") 'winner-redo)
+(global-set-key (kbd "C-c h") 'winner-undo)
+(global-set-key (kbd "C-c l") 'winner-redo)
 
 
 					; More bindings
@@ -204,18 +213,11 @@
   (find-file
    (expand-file-name "init.el" user-emacs-directory)))
 
-(defun ido-M-x ()
-  "Use ido for Meta x."
-  (interactive)
-  (call-interactively
-   (intern (ido-completing-read
-	    "M-x "
-	    (all-completions "" obarray 'commandp)))))
-
-(global-set-key "\M-x" 'ido-M-x)
 (global-set-key (kbd "C-c i") 'open-init-el)
 (global-set-key (kbd "C-M-/") 'indent-region)
 (global-set-key (kbd "C-c k") 'kill-this-buffer)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "<C-iso-lefttab>") 'previous-buffer)
 (global-set-key (kbd "C-c f") 'toggle-frame-fullscreen)
+(global-set-key (kbd "C-u") (lambda() (interactive) (scroll-down-command 16)))
+(global-set-key (kbd "C-d") (lambda() (interactive) (scroll-up-command 16)))
