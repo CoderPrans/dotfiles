@@ -70,6 +70,7 @@
 (let ((my-packages '(ag
 		     fzf
 		     evil
+                     corfu
 		     cider
 		     magit
 		     winum
@@ -183,7 +184,7 @@
 
 
 					; Appearance
-(set-face-attribute 'default nil :font "Monaco" :height 120)
+(set-face-attribute 'default nil :font "Monospace" :height 120)
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Monaco-13"))
 
