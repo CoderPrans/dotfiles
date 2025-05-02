@@ -491,7 +491,7 @@ require("lazy").setup({
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
 				clangd = {},
-				-- gopls = {},
+				gopls = {},
 				pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -803,6 +803,9 @@ require("lazy").setup({
 		--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	},
+
+  -- github copilot
+  "github/copilot.vim"
 })
 
 
@@ -814,6 +817,13 @@ vim.keymap.set("n", "<leader>l", function()
     or filetype == "typescript" then
     vim.cmd('!cd %:p:h')
     vim.cmd('!bun %:t')
+  end
+
+  -- Execute C
+  if filetype == "c" then
+    vim.cmd('!cd %:p:h')
+    vim.cmd('!gcc -o v %:t')
+    vim.cmd('!./v')
   end
 
 end)
